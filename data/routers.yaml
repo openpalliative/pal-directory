@@ -1,0 +1,46 @@
+routers:
+  - id: ru-mow
+    region_ids: [RU-MOW]
+    title: Московский многопрофильный центр паллиативной помощи
+    operator: gov
+    url: https://cpmdzm.ru/departments/
+    number: +7 499 940-19-97
+    tel: "+74999401997"
+    number_label: диспетчерская
+    not_affiliated: true
+    source_title: страница отделений на сайте центра
+    source_url: https://cpmdzm.ru/departments/
+    retrieved_at: 2026-10-11
+    source_ref: router-ru-mow
+    verified: false
+    verified_at: ""
+  - id: ru-mos
+    region_ids: [RU-MOS]
+    title: Паллиативная помощь Подмосковья
+    operator: gov
+    url: https://palliative.mosreg.ru/
+    number: +7 (498) 683-83-83
+    tel: "+74986838383"
+    number_label: линия координационного центра
+    not_affiliated: true
+    source_title: РИАМО, 03.08.2026, «Центр паллиативной помощи Подмосковья отметил четырёхлетие»
+    source_url: https://riamo.ru/news/zdravoohranenie/tsentr-palliativnoj-pomoschi-podmoskovja-otmetil-chetyrehletie/
+    retrieved_at: 2026-10-11
+    source_ref: router-ru-mos
+    verified: false
+    verified_at: ""
+  - id: spb-lo
+    region_ids: [RU-SPE, RU-LEN]
+    title: "Фонд AdVita: учреждения паллиативной помощи по районам Санкт-Петербурга и Ленинградской области"
+    operator: ngo
+    url: https://palliative.advita.ru/medical-institutions/
+    number: 8-800-700-89-02
+    tel: "+78007008902"
+    number_label: линия фонда
+    not_affiliated: true
+    source_title: Памятка «Паллиативная помощь в Санкт-Петербурге. Маршрутизация пациентов», PDF, 06.2025
+    source_url: https://oncocentre.ru/wp-content/uploads/2025/06/Palliativnaya-pomoshh-v-SanktPeterburge.pdf
+    retrieved_at: 2026-10-11
+    source_ref: router-spb-lo
+    verified: false
+    verified_at: ""

@@ -1,0 +1,98 @@
+name: watch
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: watch
+  cancel-in-progress: false
+jobs:
+  watch:
+    if: github.event_name == 'workflow_dispatch' || vars.WATCH_ENABLED == 'true'
+    runs-on: ${{ fromJSON(vars.WATCH_RUNNER || '"ubuntu-24.04"') }}
+    timeout-minutes: 60
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: "0.11.7"
+          enable-cache: false
+      - run: uv sync --frozen
+      - name: watch
+        id: w
+        run: |
+          uv run python -m pipeline.watch
+          cat _reports/watch.env >> "$GITHUB_OUTPUT"
+      - name: verify facts
+        if: steps.w.outputs.mode == 'facts'
+        run: |
+          uv run pytest -q
+          uv run python -m opsite build
+          uv run python -m opsite check --ci
+      - name: facts
+        id: facts
+        if: steps.w.outputs.mode == 'facts'
+        env:
+          DAY: ${{ steps.w.outputs.date }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/snapshots data/meta.yaml
+          if git diff --cached --quiet; then
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "data: снимок Росздравнадзора $DAY"
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin "HEAD:$GITHUB_REF_NAME"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: site
+        if: steps.facts.outputs.pushed == 'true' && github.ref_name == github.event.repository.default_branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY"
+      - name: proposal
+        id: proposal
+        if: steps.w.outputs.mode == 'pr'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          branch: ${{ steps.w.outputs.branch }}
+          title: ${{ steps.w.outputs.title }}
+          commit-message: ${{ steps.w.outputs.title }}
+          body-path: _reports/watch-pr.md
+          labels: review:data
+          add-paths: |
+            data/rzn
+            data/snapshots
+      - name: checks on the pull request
+        if: steps.proposal.outputs.pull-request-operation == 'created' || steps.proposal.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.w.outputs.branch }}
+        run: gh workflow run checks.yml --ref "$BRANCH" --repo "$GITHUB_REPOSITORY"
+      - name: review
+        if: always() && hashFiles('_reports/watch.json') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run python -m pipeline.watch --open-issues _reports/watch.json
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: watch-reports
+          path: _reports
+          if-no-files-found: ignore
+      - name: keepalive
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/$GITHUB_REPOSITORY/actions/workflows/watch.yml/enable"

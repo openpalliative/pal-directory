@@ -1,0 +1,52 @@
+{% extends "op/base.html.j2" %}
+{% set T = content.texts.home %}
+{% block title %}{{ site.title }}{% endblock %}
+{% block description %}Номера минздрава, Росздравнадзора и фонда ОМС по регионам России: с назначением, источником и датой. Номера по всей стране{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-home.css') }}">
+<script type="module" src="{{ url('assets/js/pd-home.js') }}"></script>
+{% endblock %}
+{% block main %}
+<div class="op-wrap pd-page pd-home">
+  <div class="pd-layout">
+    <div class="pd-layout__head">
+      <h1 class="pd-title">{{ site.title }}</h1>
+      <p class="op-lead pd-lead">{{ T.lead_links if site.pd.links else T.lead }}</p>
+      <pd-remember class="pd-remember pd-remember--home" data-mode="home" hidden>
+        <p class="pd-remember__on">{{ icon("map-pin") }}<span>Ваш регион: <a data-region-link href="#"></a></span> · <button type="button" class="op-btn op-btn--link" data-forget>забыть</button></p>
+      </pd-remember>
+      <pd-region-search class="pd-search" hidden>
+        <label class="op-field__label" for="pd-q">{{ T.search_label }}</label>
+        <p class="op-field__hint" id="pd-q-hint">{{ T.search_hint }}</p>
+        <div class="pd-search__row">
+          <span class="pd-search__icon">{{ icon("search") }}</span>
+          <input class="op-input pd-search__input" id="pd-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" aria-describedby="pd-q-hint pd-q-count" aria-controls="pd-q-results">
+        </div>
+        <p class="pd-search__count" id="pd-q-count" aria-live="polite"></p>
+        <ul class="pd-search__results" id="pd-q-results" hidden></ul>
+        <div class="pd-empty pd-search__empty" hidden>
+          {{ icon("search") }}
+          <p>{{ T.not_found }}. <a href="{{ url('federal/') }}">{{ T.no_region }}</a></p>
+        </div>
+      </pd-region-search>
+      {% if site.pd.demo %}{% include "partials/demo.html.j2" %}{% endif %}
+    </div>
+    <div class="pd-layout__side">
+      {{ op.now(compact=true) }}
+      <p class="pd-side-link"><a href="{{ url('federal/') }}">Все номера по всей стране</a></p>
+    </div>
+    <div class="pd-layout__main">
+      <section class="pd-all" id="pd-regions" aria-labelledby="pd-all-title">
+        <h2 id="pd-all-title">{{ T.list_title }}</h2>
+        {% include "partials/regions-list.html.j2" %}
+      </section>
+
+      <div class="pd-home-foot">
+        {{ op.data_date(data["regions"].data_date if data.get("regions") else "", stale_after=90, label="Данные от") }}
+        <p><a href="{{ url('data/') }}">Откуда данные</a></p>
+      </div>
+      <pd-back class="pd-back" data-situations="{{ site.pd.situations_json }}" data-hub="{{ hub('s/') }}" hidden><a href="{{ hub('') }}">{{ icon("arrow-left") }}<span data-back-label>Вернуться</span></a></pd-back>
+    </div>
+  </div>
+</div>
+{% endblock %}

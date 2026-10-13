@@ -1,0 +1,43 @@
+name: Стать куратором региона
+description: Раз в полгода звонить по номерам своего региона и отмечать, отвечают ли они
+title: "Куратор: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Это сообщение увидят все.** Не пишите ФИО, телефон, почту, адрес и место работы. Нам достаточно вашего аккаунта GitHub: через него мы ответим в этом issue
+
+        Сначала прочитайте, что делает куратор: [docs/CURATORS.md](https://github.com/openpalliative/pal-directory/blob/main/docs/CURATORS.md). Коротко: вы звоните по номерам своего региона не реже раза в 180 дней и присылаете результат через pull request. Это добровольно, без оплаты и без обязательств, остановиться можно в любой момент
+  - type: input
+    id: region
+    attributes:
+      label: Регион
+      description: Название или код, например Калининградская область или RU-KGD. Можно несколько через запятую
+    validations:
+      required: true
+  - type: dropdown
+    id: github
+    attributes:
+      label: Pull request на GitHub
+      description: Правки отмечаются через pull request. Если не умеете, мейнтейнер поможет в этом issue
+      options:
+        - умею
+        - не умею, нужна помощь
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Что ещё важно знать
+      description: Например, в каких номерах вы уже замечали ошибки. Без личных данных
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Перед отправкой
+      options:
+        - label: Могу сам звонить по номерам своего региона
+          required: true
+        - label: Правила docs/CURATORS.md понятны, ФИО сотрудников и подробности разговоров не публикую
+          required: true
+        - label: В сообщении нет моих ФИО, телефона, почты и адреса
+          required: true

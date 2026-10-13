@@ -1,0 +1,50 @@
+name: Сообщить о проблеме
+description: Ошибка на странице, непонятный текст, неверная ссылка или устаревшие данные
+title: "Проблема: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Это сообщение увидят все. Не пишите ФИО, диагнозы, адреса, телефоны и номера документов.**
+
+        Не прикладывайте сканы и фото документов, даже своих. Нам достаточно адреса страницы и пары слов о том, что не так
+  - type: input
+    id: page
+    attributes:
+      label: Адрес страницы
+      description: Скопируйте из строки браузера
+      placeholder: https://openpalliative.github.io/pal-directory/regions/ru-kgd/
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Что не так
+      description: Своими словами. Если текст непонятный, перепишите, как было бы понятнее
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Ссылка на официальный источник
+      description: Если ошибка в норме, сроке или номере. Например, публикация на publication.pravo.gov.ru
+    validations:
+      required: false
+  - type: dropdown
+    id: device
+    attributes:
+      label: Где открывали
+      options:
+        - Телефон
+        - Планшет
+        - Компьютер
+        - Печать на бумаге
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Перед отправкой
+      options:
+        - label: В сообщении нет ФИО, диагнозов, адресов, телефонов и номеров документов
+          required: true

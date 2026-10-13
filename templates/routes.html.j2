@@ -1,0 +1,31 @@
+{% extends "op/base.html.j2" %}
+{% import "partials/pd.html.j2" as pd with context %}
+{% set T = content.texts.routes_page %}
+{% block title %}{{ T.title }}{% endblock %}
+{% block description %}Перечни медицинских организаций, которые оказывают паллиативную помощь, по опубликованным региональным приказам{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-pages.css') }}">
+{% endblock %}
+{% block main %}
+{{ site.pd.sprite }}
+<div class="op-wrap pd-page pd-routes">
+  {{ op.crumbs([("openpalliative", hub('')), (site.title, url('')), ("Перечни организаций", "")]) }}
+  <h1 class="pd-title">{{ T.title }}</h1>
+  <p class="op-lead pd-lead">{{ T.lead }}</p>
+  {% if site.pd.routes %}
+  <ul class="pd-route-list">
+    {% for route in site.pd.routes %}
+    {% set region = site.pd.route_regions.get(route.region_id) %}
+    <li class="pd-who">
+      <h2 class="pd-who__title"><a href="{{ url('routes/' ~ route.id ~ '/') }}">{{ route.title }}</a></h2>
+      <p class="pd-who__meta">Приказ от {{ route.act.date | ru_date }} № {{ route.act.number }}{% if region %}. {{ region.name }}{% endif %}</p>
+      {{ pd.route_badges(route) }}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  {{ op.status("info", "Перечней пока нет") }}
+  {% endif %}
+  <p>Перечня по вашему региону нет? На карточке региона есть официальные документы региона и номера министерства здравоохранения. <a href="{{ url('regions/') }}">Все регионы</a></p>
+</div>
+{% endblock %}

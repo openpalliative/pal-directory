@@ -1,0 +1,67 @@
+{
+ "format": "openpalliative-dataset/1",
+ "dataset": "region-acts",
+ "repo": "pal-directory",
+ "schema_version": "1.0.0",
+ "version": "2026.10.11",
+ "generated_at": "2026-10-11T12:00:00Z",
+ "data_date": "2026-10-11",
+ "stale_after_days": 120,
+ "license": "CC0-1.0",
+ "source": [
+  {
+   "id": "synthetic",
+   "title": "Пример на выдуманных данных"
+  }
+ ],
+ "content_sha256": "7dda32270e33d78f5e1f9882860e9931ecbc7931fdd224c398de4ecc4998322b",
+ "counts": {
+  "items": 2,
+  "unverified": 0,
+  "excluded": 0
+ },
+ "items": [
+  {
+   "region_id": "RU-KGD",
+   "act_type": "Приказ",
+   "authority": "Министерства здравоохранения (пример)",
+   "pages": 1,
+   "kind_checked": false,
+   "words": [
+    "паллиативной"
+   ],
+   "source_ref": "pravo-api",
+   "retrieved_at": "2026-10-11",
+   "verified": true,
+   "verified_at": "2026-10-11",
+   "id": "0000000000000002",
+   "number": "2",
+   "doc_date": "2026-09-09",
+   "publish_date": "2026-09-10",
+   "title": "Об оказании паллиативной медицинской помощи (пример)",
+   "url": "http://publication.pravo.gov.ru/document/0000000000000002",
+   "kind": "organization"
+  },
+  {
+   "region_id": "RU-KGD",
+   "act_type": "Закон",
+   "authority": "Министерства здравоохранения (пример)",
+   "pages": 1,
+   "kind_checked": false,
+   "words": [
+    "паллиативной"
+   ],
+   "source_ref": "pravo-api",
+   "retrieved_at": "2026-10-11",
+   "verified": true,
+   "verified_at": "2026-10-11",
+   "id": "0000000000000003",
+   "number": "3",
+   "doc_date": "2025-03-04",
+   "publish_date": "2025-03-06",
+   "title": "О порядке возмещения иному субъекту (пример)",
+   "url": "http://publication.pravo.gov.ru/document/0000000000000003",
+   "kind": "reimbursement"
+  }
+ ]
+}

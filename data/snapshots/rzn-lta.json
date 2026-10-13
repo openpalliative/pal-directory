@@ -1,0 +1,23 @@
+{
+ "dataset": "7710537160-lta",
+ "meta_url": "https://roszdravnadzor.gov.ru/opendata/7710537160-lta/meta.csv",
+ "url": "https://roszdravnadzor.gov.ru/opendata/7710537160-lta/data-20261001-structure-20180925.csv",
+ "modified": "20261001",
+ "sha256": "509308ccabdda00ef3368528c5ea7052c9819b1a5da295372107893e70aeef21",
+ "bytes": 105982,
+ "checked_at": "2026-10-13",
+ "rows_total": 77,
+ "rows": 73,
+ "excluded_rows": 4,
+ "dropped_fields": [
+  "head",
+  "deputy_head",
+  "functions"
+ ],
+ "emails_dropped": 3,
+ "regions_covered": 81,
+ "regions_missing": [
+  "RU-MOS",
+  "RU-MOW"
+ ]
+}

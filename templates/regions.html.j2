@@ -1,0 +1,17 @@
+{% extends "op/base.html.j2" %}
+{% set T = content.texts.regions_page %}
+{% block title %}{{ T.title }}{% endblock %}
+{% block description %}Все регионы России в разделе «Куда звонить»: номера минздрава, Росздравнадзора и фонда ОМС{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-home.css') }}">
+{% endblock %}
+{% block main %}
+<div class="op-wrap pd-page pd-home pd-regions-page">
+  {{ op.crumbs([("openpalliative", hub('')), (site.title, url('')), (T.title, "")]) }}
+  <h1 class="pd-title">{{ T.title }}</h1>
+  <p class="op-lead pd-lead">{{ T.lead }}. <a href="{{ url('') }}">Поиск по названию</a></p>
+  <section class="pd-all" aria-label="{{ T.title }}">
+    {% include "partials/regions-list.html.j2" %}
+  </section>
+</div>
+{% endblock %}

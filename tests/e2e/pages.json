@@ -1,0 +1,19 @@
+[
+  { "name": "home", "path": "", "nojs": true },
+  { "name": "region-kgd", "path": "regions/ru-kgd/", "nojs": true },
+  { "name": "region-irk", "path": "regions/ru-irk/", "nojs": true },
+  { "name": "region-mow", "path": "regions/ru-mow/", "nojs": true },
+  { "name": "region-spe", "path": "regions/ru-spe/", "nojs": true },
+  { "name": "region-ce", "path": "regions/ru-ce/", "nojs": true },
+  { "name": "region-chu", "path": "regions/ru-chu/", "nojs": true },
+  { "name": "federal", "path": "federal/", "nojs": true },
+  { "name": "route-kgd", "path": "routes/ru-kgd/", "nojs": true },
+  { "name": "route-kos", "path": "routes/ru-kos/", "nojs": true },
+  { "name": "route-kos-children", "path": "routes/ru-kos-children/", "nojs": true },
+  { "name": "route-psk-children", "path": "routes/ru-psk-children/", "nojs": true },
+  { "name": "documents-che", "path": "regions/ru-che/documents/", "nojs": true },
+  { "name": "regions", "path": "regions/", "nojs": true },
+  { "name": "routes", "path": "routes/", "nojs": true },
+  { "name": "data", "path": "data/", "nojs": true },
+  { "name": "e404", "path": "404.html", "nojs": true }
+]

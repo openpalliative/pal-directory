@@ -1,0 +1,1133 @@
+id: ru-sve
+region_id: RU-SVE
+title: 'Свердловская область: кто оказывает паллиативную помощь взрослым'
+audience: adults
+act:
+  title: Приказ Министерства здравоохранения Свердловской области от 30.01.2026 № 100-п «Об организации и совершенствовании оказания паллиативной медицинской помощи взрослому населению в Свердловской области»
+  number: 100-п
+  date: '2026-01-30'
+  eoNumber: '6601202602050002'
+  url: http://publication.pravo.gov.ru/document/6601202602050002
+districts:
+- name: ГО Краснотурьинск
+  units: &id001
+  - ambulatory 1
+  page: 21
+- name: ГО Пелым
+  units: *id001
+  page: 21
+- name: ГО Карпинск
+  units: &id002
+  - ambulatory 2.1
+  - ambulatory 2.2
+  page: 21
+- name: Волчанский ГО
+  units: *id002
+  page: 21
+- name: Ивдельский ГО
+  units:
+  - ambulatory 3
+  page: 21
+- name: Североуральский ГО
+  units:
+  - ambulatory 4
+  page: 21
+- name: Серовский ГО
+  units: &id003
+  - ambulatory 5.1
+  - ambulatory 5.2
+  page: 21
+- name: Сосьвинский ГО
+  units: *id003
+  page: 21
+- name: Гаринский ГО
+  units: *id003
+  page: 21
+- name: ГО Верхотурский
+  units: *id003
+  page: 21
+- name: Новолялинский ГО
+  units:
+  - ambulatory 6
+  page: 21
+- name: МО Алапаевское
+  units: &id004
+  - ambulatory 7
+  page: 21
+- name: Махневское МО
+  units: *id004
+  page: 21
+- name: МО город Алапаевск
+  units:
+  - ambulatory 8.1
+  - ambulatory 8.2
+  page: 21
+- name: Артемовский ГО
+  units:
+  - ambulatory 9.1
+  - ambulatory 9.2
+  page: 21
+- name: Режевской ГО
+  units:
+  - ambulatory 10
+  page: 21
+- name: Байкаловский МР
+  units:
+  - ambulatory 11.1
+  - ambulatory 11.2
+  page: 21
+- name: Слободо-Туринский МР
+  units:
+  - ambulatory 12
+  page: 22
+- name: МО «город Ирбит»
+  units: &id005
+  - ambulatory 13
+  page: 22
+- name: Ирбитское МО
+  units: *id005
+  page: 22
+- name: Пышминский ГО
+  units:
+  - ambulatory 14
+  page: 22
+- name: Тавдинский ГО
+  units: &id006
+  - ambulatory 15.1
+  - ambulatory 15.2
+  page: 22
+- name: Таборинский МР
+  units: *id006
+  page: 22
+- name: Талицкий ГО
+  units:
+  - ambulatory 16.1
+  - ambulatory 16.2
+  page: 22
+- name: Тугулымский ГО
+  units:
+  - ambulatory 17
+  page: 22
+- name: Туринский ГО
+  units:
+  - ambulatory 18
+  page: 22
+- name: ГО Арамильский
+  units:
+  - ambulatory 19.1
+  page: 22
+- name: Все муниципальные образования Свердловской области
+  units:
+  - ambulatory 19.2
+  page: 22
+- name: ГО Сысертский
+  units:
+  - ambulatory 20
+  page: 22
+- name: Асбестовский ГО
+  units: &id007
+  - ambulatory 21.1
+  - ambulatory 21.2
+  page: 22
+- name: Малышевский ГО
+  units: *id007
+  page: 22
+- name: ГО Рефтинский
+  units: *id007
+  page: 22
+- name: Белоярский ГО
+  units: &id008
+  - ambulatory 22.1
+  - ambulatory 22.2
+  page: 22
+- name: ГО Верхнее Дуброво
+  units: *id008
+  page: 22
+- name: МО «поселок Уральский»
+  units: *id008
+  page: 22
+- name: ГО Заречный
+  units: *id008
+  page: 22
+- name: Березовский ГО
+  units:
+  - ambulatory 23
+  page: 22
+- name: Каменск-Уральский ГО
+  units:
+  - ambulatory 24.1
+  - ambulatory 24.2
+  page: 22
+- name: Каменский ГО
+  units:
+  - ambulatory 25
+  page: 22
+- name: Камышловский ГО
+  units: &id009
+  - ambulatory 26
+  page: 23
+- name: Камышловский МР
+  units: *id009
+  page: 23
+- name: Богдановичский ГО
+  units:
+  - ambulatory 27
+  page: 23
+- name: ГО Сухой Лог
+  units:
+  - ambulatory 28.1
+  - ambulatory 28.2
+  page: 23
+- name: ГО Верхний Тагил
+  units:
+  - ambulatory 29
+  page: 23
+- name: Кушвинский ГО
+  units: &id010
+  - ambulatory 30
+  page: 23
+- name: ГО Верхняя Тура
+  units: *id010
+  page: 23
+- name: Верхнесалдинский ГО
+  units: &id011
+  - ambulatory 31
+  page: 23
+- name: ГО ЗАТО п. Свободный
+  units: *id011
+  page: 23
+- name: ГО Нижняя Салда
+  units: *id011
+  page: 23
+- name: Горноуральский ГО (кроме п. Висим, п. Черноисточинск)
+  units:
+  - ambulatory 32
+  page: 23
+- name: г. Нижний Тагил, Ленинский район
+  units: &id012
+  - ambulatory 33
+  page: 23
+- name: Горноуральский ГО (п. Висим, п. Черноисточинск)
+  units: *id012
+  page: 23
+- name: г. Нижний Тагил, Тагилстроевский район
+  units:
+  - ambulatory 34
+  page: 23
+- name: г. Нижний Тагил, Ленинский район
+  units:
+  - ambulatory 35.1
+  page: 23
+- name: г. Нижний Тагил
+  units:
+  - ambulatory 35.2
+  page: 23
+- name: г. Нижний Тагил, Тагилстроевский район
+  units:
+  - ambulatory 36.1
+  page: 23
+- name: г. Нижний Тагил
+  units:
+  - ambulatory 36.2
+  page: 23
+- name: г. Нижний Тагил, (Дзержинский район)
+  units:
+  - ambulatory 37
+  page: 23
+- name: Качканарский ГО
+  units: &id013
+  - ambulatory 38
+  page: 23
+- name: Нижнетуринский ГО
+  units: *id013
+  page: 23
+- name: ГО г. Лесной
+  units: *id013
+  page: 23
+- name: ГО Красноуральск
+  units:
+  - ambulatory 39
+  page: 23
+- name: ГО Верх-Нейвинский
+  units: &id014
+  - ambulatory 40
+  page: 24
+- name: ГО Новоуральский
+  units: *id014
+  page: 24
+- name: Кировградский ГО
+  units: &id015
+  - ambulatory 41
+  page: 24
+- name: ГО Верхний Тагил
+  units: *id015
+  page: 24
+- name: Невьянский ГО
+  units:
+  - ambulatory 42
+  page: 24
+- name: ГО Верхняя Пышма
+  units: &id016
+  - ambulatory 43.1
+  - ambulatory 43.2
+  page: 24
+- name: ГО Среднеуральск
+  units: *id016
+  page: 24
+- name: ГО Первоуральск
+  units: &id017
+  - ambulatory 44.1
+  - ambulatory 44.2
+  page: 24
+- name: ГО Староуткинск
+  units: *id017
+  page: 24
+- name: Шалинский ГО
+  units:
+  - ambulatory 45
+  page: 24
+- name: ГО Ревда
+  units: &id018
+  - ambulatory 46.1
+  - ambulatory 46.2
+  page: 24
+- name: ГО Дегтярск
+  units: *id018
+  page: 24
+- name: Бисертский ГО
+  units:
+  - ambulatory 47
+  page: 24
+- name: Артинский ГО
+  units:
+  - ambulatory 48
+  page: 24
+- name: МО Красноуфимский округ
+  units: &id019
+  - ambulatory 49
+  page: 24
+- name: ГО Красноуфимск
+  units: *id019
+  page: 24
+- name: Ачитский ГО
+  units:
+  - ambulatory 50.1
+  - ambulatory 50.2
+  page: 24
+- name: Нижнесергинский МР
+  units:
+  - ambulatory 51
+  page: 24
+- name: Полевской ГО
+  units:
+  - ambulatory 52.1
+  - ambulatory 52.2
+  page: 24
+- name: г. Екатеринбург (прикрепленное население), прикрепленное население ООО «Ситидок-Урал»
+  units:
+  - ambulatory 53.1
+  - ambulatory 53.2
+  page: 24
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 54.1
+  page: 24
+- name: г. Екатеринбург (прикрепленное население), прикрепленное население Ленинского района, прикрепленное население ООО МО «Новая больница»
+  units:
+  - ambulatory 54.2
+  page: 24
+- name: г. Екатеринбург (прикрепленное население), прикрепленное население ЧУЗ КБ «РЖД-Медицина»
+  units:
+  - ambulatory 55.1
+  - ambulatory 55.2
+  page: 25
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 56.1
+  - ambulatory 56.2
+  page: 25
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 57.1
+  - ambulatory 57.2
+  page: 25
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 58
+  page: 25
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 59
+  page: 25
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 60
+  page: 25
+- name: г. Екатеринбург (прикрепленное население)
+  units:
+  - ambulatory 61.1
+  - ambulatory 61.2
+  page: 25
+- name: г. Екатеринбург (онкологические паллиативные пациенты)
+  units:
+  - ambulatory 62
+  page: 25
+- name: г. Екатеринбург (ВИЧ – инфицированные паллиативные пациенты)
+  units:
+  - ambulatory 63
+  page: 25
+amended_by: []
+related_acts:
+- title: Приказ Министерства здравоохранения Свердловской области от 22.04.2026 № 557-п «О совершенствовании паллиативной медицинской помощи детям в системе здравоохранения Свердловской области»
+  number: 557-п
+  date: '2026-04-22'
+  eoNumber: '6601202604240003'
+  url: http://publication.pravo.gov.ru/document/6601202604240003
+  note: для детей, перечень по этому приказу здесь пока не разобран
+quotes:
+- point: прил. 1, п. 1.3
+  text_verbatim: 'Паллиативная медицинская помощь взрослому населению Свердловской области в амбулаторных условиях, в том числе на дому, оказывается: - в кабинетах паллиативной медицинской помощи (далее
+    - кабинеты ПМП) медицинских организаций, оказывающих первичную медико-санитарную помощь; - в кабинетах ПМП медицинских организаций, оказывающих специализированную помощь; - отделениями выездной патронажной
+    службы государственных медицинских организаций Свердловской области.'
+  page: 7
+  verified: false
+- point: прил. 1, п. 1.4
+  text_verbatim: 'Паллиативная медицинская помощь взрослому населению в условиях стационара оказывается: - медицинскими организациями, оказывающими специализированную, в том числе высокотехнологичную медицинскую
+    помощь и имеющими в структуре отделения паллиативной медицинской помощи, отделения сестринского ухода.'
+  page: 7
+  verified: false
+- point: прил. 1, п. 1.5, начало
+  text_verbatim: Координацию деятельности медицинских организаций, оказывающих паллиативную медицинскую помощь, медицинских организаций, оказывающих первичную медико-санитарную, специализированную, в том
+    числе высокотехнологичную, осуществляет ОМЦ (телефон 8-800-100-06-26
+  page: 7
+  verified: false
+units:
+- n: 1
+  table: ambulatory
+  org: ГАУЗ СО «Краснотурьинская городская больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 2
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Карпинская центральная городская больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 2
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Карпинская центральная городская больница»
+  unit: отделение выездной патронажной помощи
+  page: 21
+  ocr_fixed: false
+- n: 3
+  table: ambulatory
+  org: ГАУЗ СО «Ивдельская центральная районная больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 4
+  table: ambulatory
+  org: ГАУЗ СО «Североуральская центральная городская больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 5
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Серовская городская больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 5
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Серовская городская больница»
+  unit: отделение выездной патронажной помощи
+  page: 21
+  ocr_fixed: false
+- n: 6
+  table: ambulatory
+  org: ГАУЗ СО «Новолялинская районная больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 7
+  table: ambulatory
+  org: ГАУЗ СО «Алапаевская центральная районная больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 8
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Алапаевская городская больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 8
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Алапаевская городская больница»
+  unit: отделение выездной патронажной помощи
+  page: 21
+  ocr_fixed: false
+- n: 9
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Артемовская центральная районная больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 9
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Артемовская центральная районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 21
+  ocr_fixed: false
+- n: 10
+  table: ambulatory
+  org: ГАУЗ СО «Режевская центральная районная больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 11
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Байкаловская центральная районная больница»
+  unit: кабинет
+  page: 21
+  ocr_fixed: false
+- n: 11
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Байкаловская центральная районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 21
+  ocr_fixed: false
+- n: 12
+  table: ambulatory
+  org: ГАУЗ СО «Слободо-Туринская районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 13
+  table: ambulatory
+  org: ГАУЗ СО «Ирбитская центральная городская больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 14
+  table: ambulatory
+  org: ГАУЗ СО «Пышминская центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 15
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Тавдинская центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 15
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Тавдинская центральная районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 22
+  ocr_fixed: false
+- n: 16
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Талицкая центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 16
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Талицкая центральная районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 22
+  ocr_fixed: false
+- n: 17
+  table: ambulatory
+  org: ГАУЗ СО «Тугулымская центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 18
+  table: ambulatory
+  org: ГАУЗ СО «Туринская центральная районная больница им. О.Д. Зубова»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 19
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Арамильская городская больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 19
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Арамильская городская больница»
+  unit: отделение выездной патронажной помощи
+  page: 22
+  ocr_fixed: false
+- n: 20
+  table: ambulatory
+  org: ГАУЗ СО «Сысертская центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 21
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница город Асбест»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 21
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница город Асбест»
+  unit: отделение выездной патронажной помощи
+  page: 22
+  ocr_fixed: false
+- n: 22
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Белоярская центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 22
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Белоярская центральная районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 22
+  ocr_fixed: false
+- n: 23
+  table: ambulatory
+  org: ГАУЗ СО «Березовская центральная городская больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 24
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница город Каменск-Уральский»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 24
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница город Каменск-Уральский»
+  unit: отделение выездной патронажной помощи
+  page: 22
+  ocr_fixed: false
+- n: 25
+  table: ambulatory
+  org: ГАУЗ СО «Каменская центральная районная больница»
+  unit: кабинет
+  page: 22
+  ocr_fixed: false
+- n: 26
+  table: ambulatory
+  org: ГАУЗ СО «Камышловская центральная районная больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 27
+  table: ambulatory
+  org: ГАУЗ СО «Богдановичская центральная районная больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 28
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Сухоложская районная больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 28
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Сухоложская районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 23
+  ocr_fixed: false
+- n: 29
+  table: ambulatory
+  org: ГАУЗ СО "Городская больница г. Верхний Тагил"
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 30
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская больница город Кушва»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 31
+  table: ambulatory
+  org: ГБУЗ СО «Верхнесалдинская центральная городская больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 32
+  table: ambulatory
+  org: ГАУЗ СО «Горноуральская районная больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 33
+  table: ambulatory
+  org: ГАУЗ СО «Демидовская городская больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 34
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница №4 город Нижний Тагил»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 35
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Городская поликлиника №3 город Нижний Тагил»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 35
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Городская поликлиника №3 город Нижний Тагил»
+  unit: отделение выездной патронажной службы
+  page: 23
+  ocr_fixed: false
+- n: 36
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Городская поликлиника №4 город Нижний Тагил»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 36
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Городская поликлиника №4 город Нижний Тагил»
+  unit: отделение выездной патронажной службы
+  page: 23
+  ocr_fixed: false
+- n: 37
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница №1 город Нижний Тагил»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 38
+  table: ambulatory
+  org: ГАУЗ СО «Качканарская центральная городская больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 39
+  table: ambulatory
+  org: ГАУЗ СО «Красноуральская центральная городская больница»
+  unit: кабинет
+  page: 23
+  ocr_fixed: false
+- n: 40
+  table: ambulatory
+  org: ГАУЗ СО «Верх-Нейвинская поликлиника»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 41
+  table: ambulatory
+  org: ГАУЗ СО «Кировградская центральная городская больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 42
+  table: ambulatory
+  org: ГАУЗ СО «Невьянская центральная районная больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 43
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Верхнепышминская центральная городская больница им. П.Д. Бородина»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 43
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Верхнепышминская центральная городская больница им. П.Д. Бородина»
+  unit: отделение выездной патронажной помощи
+  page: 24
+  ocr_fixed: false
+- n: 44
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница город Первоуральск»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 44
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Городская больница город Первоуральск»
+  unit: отделение выездной патронажной помощи
+  page: 24
+  ocr_fixed: false
+- n: 45
+  table: ambulatory
+  org: ГАУЗ СО «Шалинская городская больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 46
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Ревдинская городская больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 46
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Ревдинская городская больница»
+  unit: отделение выездной патронажной помощи
+  page: 24
+  ocr_fixed: false
+- n: 47
+  table: ambulatory
+  org: ГАУЗ СО «Бисертская городская больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 48
+  table: ambulatory
+  org: ГАУЗ СО «Артинская центральная районная больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 49
+  table: ambulatory
+  org: ГАУЗ СО «Красноуфимская районная больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 50
+  part: 1
+  table: ambulatory
+  org: ГБУЗ СО «Ачитская центральная районная больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 50
+  part: 2
+  table: ambulatory
+  org: ГБУЗ СО «Ачитская центральная районная больница»
+  unit: отделение выездной патронажной помощи
+  page: 24
+  ocr_fixed: false
+- n: 51
+  table: ambulatory
+  org: ГАУЗ СО «Нижнесергинская центральная районная больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 52
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Полевская центральная городская больница»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 52
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Полевская центральная городская больница»
+  unit: отделение выездной патронажной помощи
+  page: 24
+  ocr_fixed: false
+- n: 53
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №1 г. Екатеринбург»
+  unit: кабинет №1
+  page: 24
+  ocr_fixed: false
+- n: 53
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №1 г. Екатеринбург»
+  unit: кабинет №2
+  page: 24
+  ocr_fixed: false
+- n: 54
+  part: 1
+  table: ambulatory
+  org: ГБУЗ СО «Центральная городская больница №2 им. А.А. Миславского г. Екатеринбург»
+  unit: кабинет
+  page: 24
+  ocr_fixed: false
+- n: 54
+  part: 2
+  table: ambulatory
+  org: ГБУЗ СО «Центральная городская больница №2 им. А.А. Миславского г. Екатеринбург»
+  unit: отделение выездной патронажной службы
+  page: 24
+  ocr_fixed: false
+- n: 55
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №3 г. Екатеринбург»
+  unit: кабинет
+  page: 25
+  ocr_fixed: false
+- n: 55
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №3 г. Екатеринбург»
+  unit: отделение выездной патронажной помощи
+  page: 25
+  ocr_fixed: false
+- n: 56
+  part: 1
+  table: ambulatory
+  org: ГБУЗ СО «Городская клиническая больница №6 г. Екатеринбург»
+  unit: кабинет №1
+  page: 25
+  ocr_fixed: false
+- n: 56
+  part: 2
+  table: ambulatory
+  org: ГБУЗ СО «Городская клиническая больница №6 г. Екатеринбург»
+  unit: кабинет №2
+  page: 25
+  ocr_fixed: false
+- n: 57
+  part: 1
+  table: ambulatory
+  org: ГБУЗ СО «Центральная городская больница №7 г. Екатеринбург»
+  unit: кабинет
+  page: 25
+  ocr_fixed: false
+- n: 57
+  part: 2
+  table: ambulatory
+  org: ГБУЗ СО «Центральная городская больница №7 г. Екатеринбург»
+  unit: отделение выездной патронажной помощи
+  page: 25
+  ocr_fixed: false
+- n: 58
+  table: ambulatory
+  org: ГАУЗ СО «Городская клиническая больница №14 г. Екатеринбург»
+  unit: кабинет
+  page: 25
+  ocr_fixed: false
+- n: 59
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская больница №20 г. Екатеринбург»
+  unit: кабинет
+  page: 25
+  ocr_fixed: false
+- n: 60
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №23 г. Екатеринбург»
+  unit: кабинет
+  page: 25
+  ocr_fixed: false
+- n: 61
+  part: 1
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №24 г. Екатеринбург»
+  unit: кабинет №1
+  page: 25
+  ocr_fixed: false
+- n: 61
+  part: 2
+  table: ambulatory
+  org: ГАУЗ СО «Центральная городская клиническая больница №24 г. Екатеринбург»
+  unit: кабинет №2
+  page: 25
+  ocr_fixed: false
+- n: 62
+  table: ambulatory
+  org: ГАУЗ СО «Свердловский областной онкологический диспансер»
+  unit: отделение выездной патронажной службы
+  page: 25
+  ocr_fixed: false
+- n: 63
+  table: ambulatory
+  org: ГАУЗ СО «Свердловский областной центр профилактики и борьбы со СПИД»
+  unit: отделение выездной патронажной службы
+  page: 25
+  ocr_fixed: false
+- n: 1
+  table: inpatient
+  org: ГАУЗ СО «Карпинская центральная городская больница»
+  unit: Общий (онкологический и неонкологический), пациенты с ВИЧ-инфекцией
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 2
+  table: inpatient
+  org: ГАУЗ СО «Центральная городская больница город Кушва»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 3
+  table: inpatient
+  org: ГАУЗ СО «Байкаловская центральная районная больница»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 4
+  table: inpatient
+  org: ГАУЗ СО «Арамильская городская больница»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования и города Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 5
+  table: inpatient
+  org: ГАУЗ СО «Арамильская городская больница» (респираторный центр)
+  unit: Пациенты, требующие респираторной поддержки, обучения и подбора функционального режима медицинского оборудования для использования на дому
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 6
+  table: inpatient
+  org: ГАУЗ СО «Городская больница город Каменск- Уральский»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 7
+  table: inpatient
+  org: ГАУЗ СО «Сухоложская районная больница»
+  unit: Общий (онкологический и неонкологический), пациенты с ВИЧ-инфекцией
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 8
+  table: inpatient
+  org: ГАУЗ СО «Городская больница г. Асбест»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 26
+  ocr_fixed: false
+- n: 9
+  table: inpatient
+  org: ГБУЗ СО «Ачитская центральная районная больница»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 10
+  table: inpatient
+  org: ГАУЗ СО «Свердловский областной онкологический диспансер», п. Верх-Нейвинский
+  unit: Для онкологических пациентов
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 11
+  table: inpatient
+  org: ГБУЗ СО «Центральная городская больница № 2 им. А.А. Миславского г. Екатеринбург»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 12
+  table: inpatient
+  org: ГАУЗ СО «Городская инфекционная больница г. Нижний Тагил»
+  unit: пациенты с ВИЧ-инфекцией
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 13
+  table: inpatient
+  org: ГАУЗ СО «Верхнепышминская центральная городская больница им. П.Д. Бородина»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 14
+  table: inpatient
+  org: ГАУЗ СО «Полевская центральная городская больница»
+  unit: Пациенты с ВИЧ-инфекцией
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 15
+  table: inpatient
+  org: ГАУЗ СО «Качканарская центральная городская больница»
+  unit: Общий (онкологический и неонкологический), пациенты с ВИЧ-инфекцией
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 16
+  table: inpatient
+  org: ГАУЗ СО «Алапаевская центральная районная больница»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 17
+  table: inpatient
+  org: ГАУЗ СО «Тавдинская центральная районная больница»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 18
+  table: inpatient
+  org: ГАУЗ СО «Городская больница город Первоуральск»
+  unit: Общий (онкологический и неонкологический)
+  population: Все муниципальные образования и города Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 19
+  table: inpatient
+  org: ГБУЗ СО «Областной клинический центр фтизиопульмонологии и инфекционных заболеваний»
+  unit: Пациенты с туберкулезом
+  population: Все муниципальные образования Свердловской области
+  page: 27
+  ocr_fixed: false
+- n: 20
+  table: inpatient
+  org: ФГБУЗ «ЦМСЧ № 31» ФМБА России
+  unit: Общий (онкологический и неонкологический)
+  population: Новоуральский ГО
+  page: 27
+  ocr_fixed: false
+- n: 21
+  table: inpatient
+  org: ФГБУЗ «ЦМСЧ № 91» ФМБА России
+  unit: Общий (онкологический и неонкологический)
+  population: ГО «город Лесной»
+  page: 27
+  ocr_fixed: false
+omitted: Анкета пациента, шкалы оценки, формы направления и протокола врачебной комиссии, перечни мероприятий и изделий из приложений к порядку здесь не приводятся. Их применяют врачи
+source_ref: pravo-sve-100
+verified: false
+verified_at: ''

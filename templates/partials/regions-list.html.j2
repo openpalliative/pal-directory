@@ -1,0 +1,21 @@
+<nav class="pd-letters" aria-label="Первая буква названия">
+  <ul>
+    {% for g in site.pd.letters %}<li><a href="#{{ g.anchor }}">{{ g.letter }}</a></li>{% endfor %}
+  </ul>
+</nav>
+<div class="pd-groups">
+{% for g in site.pd.letters %}
+<div class="pd-group" id="{{ g.anchor }}" data-pd-group>
+<h3 class="pd-group__letter">{{ g.letter }}</h3>
+<ul class="pd-regions" data-pd-regions>
+{% for r in g.regions %}
+<li data-region="{{ r.id }}"{% if r.aliases %} data-aliases="{{ r.aliases | join(';') }}"{% endif %}{% if r.capital and r.capital != r.name %} data-capital="{{ r.capital }}"{% endif %}><a href="{{ url('regions/' ~ r.slug ~ '/') }}">{{ r.name | replace(" - ", " - ") }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endfor %}
+</div>
+<p class="pd-noregion">
+  <a class="pd-region-link pd-region-link--other" href="{{ url('federal/') }}"><span>{{ content.texts.home.no_region }}</span>{{ icon("chevron-right", "pd-region-link__chev") }}</a>
+  <span class="pd-noregion__hint">{{ content.texts.home.no_region_hint }}</span>
+</p>

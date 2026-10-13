@@ -1,0 +1,41 @@
+lines:
+  - id: ru-per-rzn-122
+    expect: {tel: "122", is_24x7: true, kind: short}
+  - id: ru-kya-rzn-83912214450
+    expect: {tel: "+73912214450", is_24x7: true}
+  - id: ru-ud-minzdrav-83412727389
+    expect: {topics_has: pain, audience: all}
+  - id: ru-yev-rzn-89242273951
+    expect: {shared_with: [RU-KHA]}
+  - id: ru-kha-rzn-89242273951
+    expect: {shared_with: [RU-YEV]}
+  - id: ru-kgd-minzdrav-122
+    expect: {ext_text: цифра 5, tel: "122"}
+  - id: ru-irk-minzdrav-89526171109
+    expect: {audience: adults, is_24x7: true, topics: [pain, pmp], kind: mobile}
+  - id: ru-irk-minzdrav-83952597126
+    expect: {audience: children, is_24x7: false}
+  - id: ru-bel-minzdrav-84722732003
+    expect: {number_display: 8 (4722) 73-20-03, ext_text: добавочный-31-00-1, topics: [pain, pmp]}
+  - id: ru-kgd-tfoms-84012313555
+    expect: {topics: [staff]}
+  - id: ru-kgd-tfoms-88002509122
+    expect: {topics: [general], kind: tollfree}
+  - id: ru-mos-minzdrav-84986020303
+    expect: {number_display: 8 (498) 602-03-03}
+  - id: ru-kb-minzdrav-88662400911-2
+    expect: {topics: [pmp]}
+  - id: ru-khm-rzn-89526740881
+    expect: {topics: [other]}
+  - id: ru-tam-minzdrav-84752454586
+    expect: {is_24x7: true, topics: [pain]}
+  - id: ru-vlg-minzdrav-88172230076
+    expect: {ext_text: доб. 6217}
+  - id: ru-da-tfoms-88002222905
+    expect: {number_display: 8 (800) 222-29-05}
+  - id: ru-spe-tfoms-88047009103
+    expect: {kind: tollfree, number_display: 8 (804) 700-91-03}
+absent:
+  - ru-ce-minzdrav-8871223813
+  - ru-ros-minzdrav-88632541715
+  - ru-ros-tfoms-88632904602

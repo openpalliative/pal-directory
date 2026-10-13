@@ -1,0 +1,5 @@
+region_id,agency,source_row,kind,text_verbatim
+RU-CE,minzdrav,244,malformed,8(871) 22-38-13
+RU-CE,minzdrav,244,malformed,8(871) 22-50-51
+RU-LIP,minzdrav,87,malformed,8 (962) 90-05-53
+RU-YEV,minzdrav,36,no_number,"Номер телефона ""Горячей линии"" в департаменте здравоохранения правительства ЕАО отсутствует."

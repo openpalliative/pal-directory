@@ -1,0 +1,39 @@
+{
+ "format": "openpalliative-dataset/1",
+ "dataset": "federal-lines",
+ "repo": "pal-directory",
+ "schema_version": "1.1.0",
+ "version": "2026.10.11",
+ "generated_at": "2026-10-11T12:00:00Z",
+ "data_date": "2026-10-11",
+ "stale_after_days": 90,
+ "license": "CC0-1.0",
+ "source": [
+  {
+   "id": "synthetic",
+   "title": "Пример на выдуманных данных"
+  }
+ ],
+ "content_sha256": "fd1623ff03da26b8728b84704aecb4106d01ced1d60808e172037bc1cf7738df",
+ "counts": {
+  "items": 1,
+  "unverified": 1,
+  "excluded": 0
+ },
+ "items": [
+  {
+   "id": "rzn-hotline",
+   "number": "8 (000) 000-00-09",
+   "tel": "+70000000009",
+   "label": "Горячая линия (пример)",
+   "is_24x7": false,
+   "hours_text": "",
+   "quote_verbatim": "Горячая линия (пример) - 8 (000) 000-00-09",
+   "source_url": "https://example.org/",
+   "retrieved_at": "2026-10-11",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  }
+ ]
+}

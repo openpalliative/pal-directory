@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ведомства региона: названия дословно из таблицы Росздравнадзора, у территориальных органов Росздравнадзора адрес, e-mail и часы из открытых данных Росздравнадзора",
+  "type": "object",
+  "properties": {
+    "dataset": {
+      "const": "addressees"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "region_id",
+          "agency",
+          "name",
+          "name_hotlines",
+          "line_ids",
+          "postal_address",
+          "email",
+          "hours_text",
+          "source_ref",
+          "source_version",
+          "verified",
+          "verified_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ru-[a-z]{2,3}-(rzn|minzdrav|tfoms)$"
+          },
+          "region_id": {
+            "type": "string",
+            "pattern": "^RU-[A-Z]{2,3}$"
+          },
+          "agency": {
+            "enum": [
+              "rzn",
+              "minzdrav",
+              "tfoms"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name_hotlines": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "line_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "postal_address": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[\\w.+-]+@([\\w-]+\\.)*roszdravnadzor\\.gov\\.ru$"
+          },
+          "hours_text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{8}$"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "verified_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{% extends "op/base.html.j2" %}
+{% import "partials/pd.html.j2" as pd with context %}
+{% set A = content.texts.region.acts %}
+{% block title %}{{ region.name }}: {{ A.page_title | lower }}{% endblock %}
+{% block description %}Приказы, постановления и законы региона о паллиативной помощи: {{ region.name }}. Со ссылками на официальные публикации{% endblock %}
+{% block main %}
+{{ site.pd.sprite }}
+<div class="op-wrap pd-page pd-documents">
+  {{ op.crumbs([("openpalliative", hub('')), (site.title, url('')), (region.name, url('regions/' ~ region.slug ~ '/')), (A.page_title, "")]) }}
+  <h1 class="pd-title">{{ A.page_title }}: {{ region.name }}{% if pages_total > 1 %}, часть {{ page_n }} из {{ pages_total }}{% endif %}</h1>
+  <section class="pd-section pd-acts" aria-label="{{ A.page_title }}">
+    {{ pd.acts_lead(region.acts, site.pd.acts) }}
+    {% if pages_total > 1 %}<p>Документы с {{ first_n }} по {{ first_n + acts | length - 1 }} из {{ region.acts | length }}</p>{% endif %}
+    <div class="pd-acts__box pd-acts__box--open">{{ pd.act_items(acts) }}</div>
+  </section>
+  {% if prev_path or next_path %}
+  <div class="op-actions pd-pager">
+    {% if prev_path %}<a class="op-btn op-btn--secondary" href="{{ url(prev_path) }}">{{ icon("chevron-left") }}<span>Предыдущие документы</span></a>{% endif %}
+    {% if next_path %}<a class="op-btn op-btn--secondary" href="{{ url(next_path) }}"><span>Следующие документы</span>{{ icon("chevron-right") }}</a>{% endif %}
+  </div>
+  {% endif %}
+  <ul class="pd-next">
+    <li><a href="{{ url('regions/' ~ region.slug ~ '/') }}">{{ icon("phone") }}<span>Номера региона: {{ region.name }}</span></a></li>
+  </ul>
+</div>
+{% endblock %}

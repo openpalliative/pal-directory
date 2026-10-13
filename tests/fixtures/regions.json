@@ -1,0 +1,130 @@
+{
+ "format": "openpalliative-dataset/1",
+ "dataset": "regions",
+ "repo": "pal-directory",
+ "schema_version": "1.1.0",
+ "version": "2026.10.11",
+ "generated_at": "2026-10-11T12:00:00Z",
+ "data_date": "2026-10-11",
+ "stale_after_days": 90,
+ "license": "CC0-1.0",
+ "source": [
+  {
+   "id": "synthetic",
+   "title": "Пример на выдуманных данных"
+  }
+ ],
+ "content_sha256": "63940a576d9f6cf8d0f9c0c8f837e0cc5a1e983926d4d9471b7f858cba3dd414",
+ "counts": {
+  "items": 4,
+  "unverified": 0,
+  "excluded": 0
+ },
+ "items": [
+  {
+   "id": "RU-KGD",
+   "slug": "ru-kgd",
+   "name": "Калининградская область",
+   "name_source": "Калининградская область",
+   "name_genitive": "",
+   "name_dative": "",
+   "aliases": [],
+   "capital": "Калининград",
+   "oktmo": null,
+   "route": "ru-kgd",
+   "router": null,
+   "pravo_block": "region39",
+   "acts": 1,
+   "has_pain_pmp": true,
+   "lines": 3,
+   "source_gaps": [],
+   "rzn_missing": false,
+   "rzn_missing_reason": null,
+   "source_ref": "synthetic",
+   "verified": true,
+   "verified_at": "2026-10-11"
+  },
+  {
+   "id": "RU-IRK",
+   "slug": "ru-irk",
+   "name": "Иркутская область",
+   "name_source": "Иркутская область",
+   "name_genitive": "",
+   "name_dative": "",
+   "aliases": [
+    "Приангарье"
+   ],
+   "capital": "Иркутск",
+   "oktmo": null,
+   "route": null,
+   "router": null,
+   "pravo_block": "region38",
+   "acts": 0,
+   "has_pain_pmp": false,
+   "lines": 2,
+   "source_gaps": [],
+   "rzn_missing": false,
+   "rzn_missing_reason": null,
+   "source_ref": "synthetic",
+   "verified": true,
+   "verified_at": "2026-10-11"
+  },
+  {
+   "id": "RU-MOW",
+   "slug": "ru-mow",
+   "name": "Москва",
+   "name_source": "Москва",
+   "name_genitive": "",
+   "name_dative": "",
+   "aliases": [
+    "Мск"
+   ],
+   "capital": "Москва",
+   "oktmo": null,
+   "route": null,
+   "router": "ru-mow",
+   "pravo_block": "region77",
+   "acts": 0,
+   "has_pain_pmp": false,
+   "lines": 0,
+   "source_gaps": [],
+   "rzn_missing": true,
+   "rzn_missing_reason": "Строки территориального органа в источнике нет (пример)",
+   "source_ref": "synthetic",
+   "verified": true,
+   "verified_at": "2026-10-11"
+  },
+  {
+   "id": "RU-CHU",
+   "slug": "ru-chu",
+   "name": "Чукотский автономный округ",
+   "name_source": "Чукотский автономный округ",
+   "name_genitive": "",
+   "name_dative": "",
+   "aliases": [
+    "Чукотка"
+   ],
+   "capital": "Анадырь",
+   "oktmo": null,
+   "route": null,
+   "router": null,
+   "pravo_block": "region87",
+   "acts": 0,
+   "has_pain_pmp": false,
+   "lines": 0,
+   "source_gaps": [
+    {
+     "agency": "minzdrav",
+     "kind": "malformed",
+     "text_verbatim": "8 (000) 00-00-00",
+     "source_row": 1
+    }
+   ],
+   "rzn_missing": false,
+   "rzn_missing_reason": null,
+   "source_ref": "synthetic",
+   "verified": true,
+   "verified_at": "2026-10-11"
+  }
+ ]
+}

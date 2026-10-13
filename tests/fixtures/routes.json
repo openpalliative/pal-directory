@@ -1,0 +1,88 @@
+{
+ "format": "openpalliative-dataset/1",
+ "dataset": "routes",
+ "repo": "pal-directory",
+ "schema_version": "1.1.0",
+ "version": "2026.10.11",
+ "generated_at": "2026-10-11T12:00:00Z",
+ "data_date": "2026-10-11",
+ "stale_after_days": 365,
+ "license": "CC0-1.0",
+ "source": [
+  {
+   "id": "synthetic",
+   "title": "Пример на выдуманных данных"
+  }
+ ],
+ "content_sha256": "4710802c2c5d1b96f9d30808e4c7e925841bf3955a526c503bc03f53ba1c93f3",
+ "counts": {
+  "items": 1,
+  "unverified": 1,
+  "excluded": 0
+ },
+ "items": [
+  {
+   "id": "ru-kgd",
+   "region_id": "RU-KGD",
+   "title": "Калининградская область: кто оказывает паллиативную помощь взрослым",
+   "audience": "adults",
+   "districts": [],
+   "amended_by": [],
+   "related_acts": [
+    {
+     "eoNumber": "0000000000000001",
+     "number": "1",
+     "date": "2026-01-26",
+     "title": "Приказ (пример)",
+     "url": "http://publication.pravo.gov.ru/document/0000000000000001",
+     "note": "для детей (пример)"
+    }
+   ],
+   "scan_checked_pages": [
+    1
+   ],
+   "act": {
+    "title": "Приказ (пример)",
+    "number": "0",
+    "date": "2026-09-09",
+    "eoNumber": "0000000000000000",
+    "url": "http://publication.pravo.gov.ru/document/0000000000000000"
+   },
+   "quotes": [
+    {
+     "point": "прил. 1, п. 1",
+     "text_verbatim": "Текст пункта (пример).",
+     "page": 1,
+     "verified": false,
+     "scan_checked_at": "2026-10-12"
+    }
+   ],
+   "units": [
+    {
+     "n": 1,
+     "table": "ambulatory",
+     "org": "Больница № 1 (пример)",
+     "unit": "1 кабинет ПМП",
+     "page": 1,
+     "ocr_fixed": false,
+     "scan_checked_at": "2026-10-12",
+     "verified": false
+    },
+    {
+     "n": 1,
+     "table": "inpatient",
+     "org": "Больница № 2 (пример)",
+     "unit": "1 отделение ПМП",
+     "page": 1,
+     "ocr_fixed": true,
+     "scan_checked_at": null,
+     "verified": false
+    }
+   ],
+   "omitted": "Приложения к правилам здесь не приводятся (пример)",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  }
+ ]
+}

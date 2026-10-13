@@ -1,0 +1,51 @@
+{% extends "op/base.html.j2" %}
+{% import "partials/pd.html.j2" as pd with context %}
+{% set T = content.texts.federal %}
+{% block title %}Номера по всей стране{% endblock %}
+{% block description %}Экстренные номера 112 и 103 и горячие линии, которые не привязаны к одному региону. С источником и датой проверки{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-pages.css') }}">
+<link rel="stylesheet" href="{{ url('assets/css/pd-print.css') }}" media="print">
+<script type="module" src="{{ url('assets/js/pd.js') }}"></script>
+{% endblock %}
+{% block main %}
+{{ site.pd.sprite }}
+<div class="op-wrap pd-page pd-federal">
+  {{ op.crumbs([("openpalliative", hub('')), (site.title, url('')), ("Номера по всей стране", "")]) }}
+  <h1 class="pd-title">Номера по всей стране</h1>
+  <p class="op-lead pd-lead">{{ T.lead }}</p>
+  <div class="pd-federal__grid">
+    <div class="pd-federal__now">
+      {{ op.now(compact=false, sources=true) }}
+    </div>
+    <div class="pd-federal__more">
+      {% if site.pd.federal %}
+      <section class="pd-section" aria-labelledby="pd-f-rzn">
+        <h2 id="pd-f-rzn">{{ T.rzn_title }}</h2>
+        <p class="pd-section__lead">{{ T.rzn_lead }}</p>
+        <ul class="pd-lines">
+          {% for item in site.pd.federal %}{{ pd.federal_line(item) }}{% endfor %}
+        </ul>
+        {% for item in site.pd.federal %}
+        <figure class="op-quote pd-quote">
+          <blockquote data-verbatim>{{ item.quote_verbatim }}</blockquote>
+          <figcaption>Дословно со страницы Росздравнадзора, прочитано {{ item.retrieved_at | ru_date }}</figcaption>
+        </figure>
+        {% endfor %}
+      </section>
+      {% endif %}
+      <section class="pd-section" aria-labelledby="pd-f-short">
+        <h2 id="pd-f-short">Короткий номер 122</h2>
+        <p>{{ T.short_numbers }}</p>
+        <div class="op-actions"><a class="op-btn op-btn--secondary" href="{{ url('') }}">{{ icon("map-pin") }}<span>{{ T.regions_link }}</span></a></div>
+      </section>
+      <div class="op-actions pd-federal__print">{{ op.print_btn() }}</div>
+    </div>
+  </div>
+  <footer class="op-sheet-footer">
+    <p>Номера по всей стране. Источники указаны у каждого номера. Сверьте до <span data-print-until>{{ site.pd.print_until | ru_date }}</span></p>
+    <p>Адрес страницы: https://openpalliative.github.io/pal-directory/federal/</p>
+  </footer>
+  <pd-back class="pd-back" data-situations="{{ site.pd.situations_json }}" data-hub="{{ hub('s/') }}" hidden><a href="{{ hub('') }}">{{ icon("arrow-left") }}<span data-back-label>Вернуться</span></a></pd-back>
+</div>
+{% endblock %}

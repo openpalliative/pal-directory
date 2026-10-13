@@ -1,0 +1,24 @@
+{
+ "api": "http://publication.pravo.gov.ru/api/Documents",
+ "words": [
+  "паллиативной",
+  "паллиативную",
+  "паллиативная",
+  "паллиативных",
+  "хоспис"
+ ],
+ "blocks_allowed": 83,
+ "blocks_denied": [
+  "region80",
+  "region81",
+  "region84",
+  "region85",
+  "region91",
+  "region92"
+ ],
+ "retrieved_at": "2026-10-12",
+ "queries": 415,
+ "acts": 306,
+ "regions_with_acts": 70,
+ "mismatched_eo": 0
+}

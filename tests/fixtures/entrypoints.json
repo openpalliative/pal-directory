@@ -1,0 +1,79 @@
+{
+ "format": "openpalliative-dataset/1",
+ "dataset": "entrypoints",
+ "repo": "pal-directory",
+ "schema_version": "1.0.0",
+ "version": "2026.10.11",
+ "generated_at": "2026-10-11T12:00:00Z",
+ "data_date": "2026-10-11",
+ "stale_after_days": 90,
+ "license": "CC0-1.0",
+ "source": [
+  {
+   "id": "synthetic",
+   "title": "Пример на выдуманных данных"
+  }
+ ],
+ "content_sha256": "3c7c52ae897a3c4cacb337fbe159c6d7de5eb252debe7a49215fd65a9518260e",
+ "counts": {
+  "items": 3,
+  "unverified": 3,
+  "excluded": 0
+ },
+ "items": [
+  {
+   "audience": [
+    "family",
+    "org"
+   ],
+   "offline": false,
+   "maturity": "demo",
+   "verified": false,
+   "verified_at": null,
+   "id": "regions",
+   "title": "Куда звонить в регионе",
+   "summary": "Пример",
+   "path": "",
+   "situations": [
+    "who-to-call"
+   ],
+   "printable": true
+  },
+  {
+   "audience": [
+    "family",
+    "org"
+   ],
+   "offline": false,
+   "maturity": "demo",
+   "verified": false,
+   "verified_at": null,
+   "id": "federal",
+   "title": "Номера по всей стране",
+   "summary": "Пример",
+   "path": "federal/",
+   "situations": [
+    "who-to-call"
+   ],
+   "printable": true
+  },
+  {
+   "audience": [
+    "family",
+    "org"
+   ],
+   "offline": false,
+   "maturity": "demo",
+   "verified": false,
+   "verified_at": null,
+   "id": "routes",
+   "title": "Маршрут (пример)",
+   "summary": "Пример",
+   "path": "routes/ru-kgd/",
+   "situations": [
+    "who-to-call"
+   ],
+   "printable": false
+  }
+ ]
+}

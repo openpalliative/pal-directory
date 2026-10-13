@@ -1,0 +1,25 @@
+{% import "partials/pd.html.j2" as pd with context %}
+{% set R = content.texts.report %}
+<section class="pd-section pd-report" aria-labelledby="pd-s-report">
+  <h2 id="pd-s-report">{{ R.title_links if site.pd.links else R.title }}</h2>
+  <p>{{ R.lead_links if site.pd.links else R.lead }}</p>
+  <pd-report class="pd-report__box" data-region="{{ region.id }}" data-name="{{ region.name }}" data-version="{{ site.pd.version }}">
+    {% if region.shown and not site.pd.links %}
+    <div class="op-field pd-report__pick" hidden>
+      <label class="op-field__label" for="pd-report-line">{{ R.line_label }}</label>
+      <select class="op-input" id="pd-report-line">
+        <option value="">{{ R.line_any }}</option>
+      </select>
+    </div>
+    {% endif %}
+    <p class="pd-report__warn" id="pd-report-warn">{{ icon("triangle-alert") }}<span>{{ R.warning }}</span></p>
+    <div class="op-actions pd-report__actions">
+      <a class="op-btn op-btn--secondary pd-report__link" href="{{ region.issue_url }}" aria-describedby="pd-report-warn">{{ icon("message-square") }}<span>{{ R.link }}</span>{{ pd.i("external-link", "pd-ext") }}</a>
+      <op-copy class="pd-report__copy" hidden>
+        <button class="op-btn op-btn--secondary" type="button">{{ icon("copy") }}<span>{{ R.copy_label }}</span></button>
+        <span class="pd-report__live" aria-live="polite"></span>
+      </op-copy>
+    </div>
+    <p class="pd-report__hint" hidden>{{ R.copy_hint }}</p>
+  </pd-report>
+</section>

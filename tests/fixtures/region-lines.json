@@ -1,0 +1,228 @@
+{
+ "format": "openpalliative-dataset/1",
+ "dataset": "region-lines",
+ "repo": "pal-directory",
+ "schema_version": "1.0.0",
+ "version": "2026.10.11",
+ "generated_at": "2026-10-11T12:00:00Z",
+ "data_date": "2026-10-11",
+ "stale_after_days": 90,
+ "license": "CC0-1.0",
+ "source": [
+  {
+   "id": "synthetic",
+   "title": "Пример на выдуманных данных"
+  }
+ ],
+ "content_sha256": "48b70eb7c74a73abded91afe70dfacf917a52bec406638b0b9e1f31c9ce06b59",
+ "counts": {
+  "items": 6,
+  "unverified": 6,
+  "excluded": 0
+ },
+ "items": [
+  {
+   "id": "ru-kgd-minzdrav-80000000001",
+   "region_id": "RU-KGD",
+   "agency": "minzdrav",
+   "agency_name": "Министерство здравоохранения (пример)",
+   "number_raw": "8 (000) 000-00-01",
+   "number_display": "8 (000) 000-00-01",
+   "tel": "+70000000001",
+   "ext_text": "",
+   "kind": "landline",
+   "topic_text": "по вопросам обезболивания и паллиативной помощи (пример)",
+   "hours_text": "",
+   "is_24x7": true,
+   "topics": [
+    "pain",
+    "pmp"
+   ],
+   "audience": "adults",
+   "shared_with": [],
+   "source_row": 0,
+   "source_text": "8 (000) 000-00-01 - по вопросам обезболивания и паллиативной помощи (пример) (круглосуточно)",
+   "assured_date": "2026-03-03",
+   "topics_checked": false,
+   "roles": [
+    "minzdrav",
+    "pmp",
+    "pain"
+   ],
+   "foreign_number": false,
+   "hidden": false,
+   "origin": "synthetic",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  },
+  {
+   "id": "ru-kgd-rzn-80000000002",
+   "region_id": "RU-KGD",
+   "agency": "rzn",
+   "agency_name": "Территориальный орган Росздравнадзора (пример)",
+   "number_raw": "8 (000) 000-00-02",
+   "number_display": "8 (000) 000-00-02",
+   "tel": "+70000000002",
+   "ext_text": "",
+   "kind": "landline",
+   "topic_text": "",
+   "hours_text": "с 9:00 до 18:00",
+   "is_24x7": false,
+   "topics": [
+    "general"
+   ],
+   "audience": "all",
+   "shared_with": [],
+   "source_row": 0,
+   "source_text": "8 (000) 000-00-02 с 9:00 до 18:00",
+   "assured_date": "2026-03-03",
+   "topics_checked": false,
+   "roles": [
+    "rzn",
+    "general"
+   ],
+   "foreign_number": false,
+   "hidden": false,
+   "origin": "synthetic",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  },
+  {
+   "id": "ru-kgd-tfoms-80000000003",
+   "region_id": "RU-KGD",
+   "agency": "tfoms",
+   "agency_name": "Территориальный фонд ОМС (пример)",
+   "number_raw": "8 (000) 000-00-03",
+   "number_display": "8 (000) 000-00-03",
+   "tel": "+70000000003",
+   "ext_text": "",
+   "kind": "tollfree",
+   "topic_text": "горячая линия",
+   "hours_text": "",
+   "is_24x7": false,
+   "topics": [
+    "general"
+   ],
+   "audience": "all",
+   "shared_with": [
+    "RU-IRK"
+   ],
+   "source_row": 0,
+   "source_text": "8 (000) 000-00-03 - горячая линия",
+   "assured_date": "2026-03-03",
+   "topics_checked": false,
+   "roles": [
+    "tfoms",
+    "general"
+   ],
+   "foreign_number": true,
+   "hidden": false,
+   "origin": "synthetic",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  },
+  {
+   "id": "ru-kgd-tfoms-80000000004",
+   "region_id": "RU-KGD",
+   "agency": "tfoms",
+   "agency_name": "Территориальный фонд ОМС (пример)",
+   "number_raw": "8 (000) 000-00-04",
+   "number_display": "8 (000) 000-00-04",
+   "tel": "+70000000004",
+   "ext_text": "",
+   "kind": "landline",
+   "topic_text": "директор (пример)",
+   "hours_text": "",
+   "is_24x7": false,
+   "topics": [
+    "staff"
+   ],
+   "audience": "all",
+   "shared_with": [],
+   "source_row": 0,
+   "source_text": "8 (000) 000-00-04 - директор (пример)",
+   "assured_date": "2026-03-03",
+   "topics_checked": false,
+   "roles": [
+    "tfoms"
+   ],
+   "foreign_number": false,
+   "hidden": true,
+   "origin": "synthetic",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  },
+  {
+   "id": "ru-irk-minzdrav-122",
+   "region_id": "RU-IRK",
+   "agency": "minzdrav",
+   "agency_name": "Министерство здравоохранения (пример)",
+   "number_raw": "122 (цифра 5)",
+   "number_display": "122",
+   "tel": "122",
+   "ext_text": "цифра 5",
+   "kind": "short",
+   "topic_text": "",
+   "hours_text": "",
+   "is_24x7": false,
+   "topics": [
+    "general"
+   ],
+   "audience": "all",
+   "shared_with": [],
+   "source_row": 0,
+   "source_text": "122 (цифра 5)",
+   "assured_date": "2026-03-03",
+   "topics_checked": false,
+   "roles": [
+    "minzdrav",
+    "general"
+   ],
+   "foreign_number": false,
+   "hidden": false,
+   "origin": "synthetic",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  },
+  {
+   "id": "ru-irk-tfoms-80000000003",
+   "region_id": "RU-IRK",
+   "agency": "tfoms",
+   "agency_name": "Территориальный фонд ОМС (пример)",
+   "number_raw": "8 (000) 000-00-03",
+   "number_display": "8 (000) 000-00-03",
+   "tel": "+70000000003",
+   "ext_text": "",
+   "kind": "tollfree",
+   "topic_text": "горячая линия",
+   "hours_text": "",
+   "is_24x7": false,
+   "topics": [
+    "general"
+   ],
+   "audience": "all",
+   "shared_with": [
+    "RU-KGD"
+   ],
+   "source_row": 0,
+   "source_text": "8 (000) 000-00-03 - горячая линия",
+   "assured_date": "2026-03-03",
+   "topics_checked": false,
+   "roles": [
+    "tfoms",
+    "general"
+   ],
+   "foreign_number": true,
+   "hidden": false,
+   "origin": "synthetic",
+   "source_ref": "synthetic",
+   "verified": false,
+   "verified_at": null
+  }
+ ]
+}

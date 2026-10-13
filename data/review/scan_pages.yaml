@@ -1,0 +1,186 @@
+# Подпись страниц скана официальной публикации. Строка маршрута получает scan_checked_at по первой подписи,
+# verified только по второй подписи другим человеком (second_check)
+pages:
+  - eo: "3901202609100002"
+    page: 3
+    quotes: ["прил. 1, п. 1", "прил. 1, п. 2, вводная часть", "прил. 1, п. 3"]
+    units: []
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 3 PDF (300 dpi, raw/cache/ocr/3901202609100002/p-03.png) сверено с text_verbatim дословно, знаки препинания и тире в «(далее – ПМП)» совпадают"
+    result: "пп. 1, 2 (вводная часть), 3 совпали"
+    second_check: null
+  - eo: "3901202609100002"
+    page: 19
+    quotes: []
+    units: ["ambulatory 1", "ambulatory 2", "ambulatory 3", "ambulatory 4", "ambulatory 5", "ambulatory 6", "ambulatory 7",
+            "ambulatory 8", "ambulatory 9", "ambulatory 10", "ambulatory 11", "ambulatory 12", "ambulatory 13",
+            "ambulatory 14", "ambulatory 15"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 19 PDF (300 dpi) сверено построчно с org и unit: номер строки, наименование, подразделение"
+    result: "строки 1-15 табл. 1 совпали, исправления OCR (ПМИ, ИМИ, ИМП, ]) подтверждены как ПМП"
+    second_check: null
+  - eo: "3901202609100002"
+    page: 20
+    quotes: []
+    units: ["ambulatory 16", "ambulatory 17", "ambulatory 18", "inpatient 1", "inpatient 2", "inpatient 3", "inpatient 4",
+            "inpatient 5", "inpatient 6", "inpatient 7", "inpatient 8", "inpatient 9", "inpatient 10", "inpatient 11"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 20 PDF (300 dpi) сверено построчно с org и unit"
+    result: "строки 16-18 табл. 1 и 1-11 табл. 2 совпали. У Светловской ЦРБ в табл. 2 на скане номер 11. Опечатки приказа подтверждены на скане: «2 койки сестринского» (стр. 5 табл. 2) и «районая» (стр. 11 табл. 2), у строк sic: true"
+    second_check: null
+  - eo: "4401202605290002"
+    page: 5
+    quotes: ["прил. 1, п. 2", "прил. 1, п. 3"]
+    units: []
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 5 PDF (300 dpi, raw/cache/ocr/4401202605290002/p-05.png) сверено с text_verbatim дословно"
+    result: "пп. 2 и 3 приложения 1 совпали, в OCR «кабинеты ИМП», на скане «кабинеты ПМП»"
+    second_check: null
+  - eo: "4401202605290002"
+    page: 6
+    quotes: []
+    units: ["ambulatory 1", "ambulatory 2.1", "ambulatory 2.2", "ambulatory 2.3", "ambulatory 3.1", "ambulatory 3.2"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 6 PDF сверено построчно: организация, форма помощи, прикреплённое население"
+    result: "совпали. Опечатки приказа оставлены как есть (sic): «Давыдовкой район», «Пациенты ОГБУЗ ОГБУЗ»"
+    second_check: null
+  - eo: "4401202605290002"
+    page: 7
+    quotes: []
+    units: ["ambulatory 4.1", "ambulatory 4.2", "ambulatory 5", "ambulatory 6", "ambulatory 7", "inpatient 1", "inpatient 2"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 7 PDF сверено построчно"
+    result: "совпали"
+    second_check: null
+  - eo: "4401202605290002"
+    page: 8
+    quotes: []
+    units: ["inpatient 3", "inpatient 4", "inpatient 5"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 8 PDF сверено построчно"
+    result: "совпали, в OCR «словиях», на скане «условиях»"
+    second_check: null
+  - eo: "4401202602200003"
+    page: 6
+    quotes: ["прил. 1, п. 6"]
+    units: []
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 6 PDF сверено с text_verbatim дословно"
+    result: "совпало, точки в конце п. 6 в приказе нет"
+    second_check: null
+  - eo: "4401202602200003"
+    page: 22
+    quotes: []
+    units: ["children_inpatient 1"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 22 PDF: 16 муниципальных образований и медицинская организация сверены построчно"
+    result: "совпали"
+    second_check: null
+  - eo: "4401202602200003"
+    page: 23
+    quotes: []
+    units: []
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 23 PDF: продолжение таблицы, 13 муниципальных образований сверены построчно (OCR страницу не прочёл, список набран по изображению)"
+    result: "совпали"
+    second_check: null
+  - eo: "6001202603300015"
+    page: 13
+    quotes: []
+    units: ["children_inpatient 1"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 13 PDF (300 dpi) сверено построчно: 8 направляющих организаций и организация, оказывающая стационарную помощь"
+    result: "совпали, в OCR пропущены номера строк 2, 3, 5, 8, на скане они есть"
+    second_check: null
+  - eo: "6001202603300015"
+    page: 16
+    quotes: ["прил. 3, п. 9"]
+    units: []
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 16 PDF сверено с text_verbatim дословно"
+    result: "совпало"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 7
+    quotes: ["прил. 1, п. 1.3", "прил. 1, п. 1.4", "прил. 1, п. 1.5, начало"]
+    units: []
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 7 PDF (200 dpi) сверено с text_verbatim дословно"
+    result: "пп. 1.3, 1.4 и начало п. 1.5 совпали, e-mail из п. 1.5 на стр. 8 не берём"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 21
+    quotes: []
+    units: ["ambulatory 1", "ambulatory 2.1", "ambulatory 2.2", "ambulatory 3", "ambulatory 4", "ambulatory 5.1", "ambulatory 5.2", "ambulatory 6", "ambulatory 7", "ambulatory 8.1", "ambulatory 8.2", "ambulatory 9.1", "ambulatory 9.2", "ambulatory 10", "ambulatory 11.1", "ambulatory 11.2"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 21 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, муниципальные образования и подразделения"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 22
+    quotes: []
+    units: ["ambulatory 12", "ambulatory 13", "ambulatory 14", "ambulatory 15.1", "ambulatory 15.2", "ambulatory 16.1", "ambulatory 16.2", "ambulatory 17", "ambulatory 18", "ambulatory 19.1", "ambulatory 19.2", "ambulatory 20", "ambulatory 21.1", "ambulatory 21.2", "ambulatory 22.1", "ambulatory 22.2", "ambulatory 23", "ambulatory 24.1", "ambulatory 24.2", "ambulatory 25"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 22 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, муниципальные образования и подразделения"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 23
+    quotes: []
+    units: ["ambulatory 26", "ambulatory 27", "ambulatory 28.1", "ambulatory 28.2", "ambulatory 29", "ambulatory 30", "ambulatory 31", "ambulatory 32", "ambulatory 33", "ambulatory 34", "ambulatory 35.1", "ambulatory 35.2", "ambulatory 36.1", "ambulatory 36.2", "ambulatory 37", "ambulatory 38", "ambulatory 39"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 23 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, муниципальные образования и подразделения"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 24
+    quotes: []
+    units: ["ambulatory 40", "ambulatory 41", "ambulatory 42", "ambulatory 43.1", "ambulatory 43.2", "ambulatory 44.1", "ambulatory 44.2", "ambulatory 45", "ambulatory 46.1", "ambulatory 46.2", "ambulatory 47", "ambulatory 48", "ambulatory 49", "ambulatory 50.1", "ambulatory 50.2", "ambulatory 51", "ambulatory 52.1", "ambulatory 52.2", "ambulatory 53.1", "ambulatory 53.2", "ambulatory 54.1", "ambulatory 54.2"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 24 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, муниципальные образования и подразделения. «ГО Верхний Тагил» указан и в строке 29, и в строке 41, так в приказе"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 25
+    quotes: []
+    units: ["ambulatory 55.1", "ambulatory 55.2", "ambulatory 56.1", "ambulatory 56.2", "ambulatory 57.1", "ambulatory 57.2", "ambulatory 58", "ambulatory 59", "ambulatory 60", "ambulatory 61.1", "ambulatory 61.2", "ambulatory 62", "ambulatory 63"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 25 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, муниципальные образования и подразделения"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 26
+    quotes: []
+    units: ["inpatient 1", "inpatient 2", "inpatient 3", "inpatient 4", "inpatient 5", "inpatient 6", "inpatient 7", "inpatient 8"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 26 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, закреплённые образования и профиль. Пробел в «Каменск- Уральский» так в приказе"
+    second_check: null
+  - eo: "6601202602050002"
+    page: 27
+    quotes: []
+    units: ["inpatient 9", "inpatient 10", "inpatient 11", "inpatient 12", "inpatient 13", "inpatient 14", "inpatient 15", "inpatient 16", "inpatient 17", "inpatient 18", "inpatient 19", "inpatient 20", "inpatient 21"]
+    checked_by: data-review
+    checked_at: 2026-10-12
+    method: "изображение стр. 27 PDF (200 dpi, pdftoppm) сверено построчно, OCR этой таблицы непригоден"
+    result: "совпали: организации, закреплённые образования и профиль"
+    second_check: null

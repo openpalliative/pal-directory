@@ -1,0 +1,159 @@
+{% import "op/macros.html.j2" as op with context %}
+{% set KIND = {"mobile": "мобильный", "tollfree": "бесплатный", "short": "короткий номер"} %}
+{% set AUDIENCE = {"adults": "для взрослых", "children": "для детей"} %}
+{% set RT = content.texts.region %}
+
+{% macro i(name, cls="") -%}
+<svg class="op-icon pd-i{{ ' ' ~ cls if cls }}" aria-hidden="true"><use href="#pd-i-{{ name }}"/></svg>
+{%- endmacro %}
+
+{% macro unverified() -%}
+<span class="op-status op-status--unverified op-status--inline">{{ i("circle-help") }}<span>Не проверено</span></span>
+{%- endmacro %}
+
+{% macro line(item) -%}
+{% set meta = [] %}
+{% if item.hours_shown %}{% set _ = meta.append(("Часы: ", item.hours_shown)) %}{% endif %}
+{% if item.ext_text %}{% set _ = meta.append(("Добавочный: ", item.ext_text)) %}{% endif %}
+{% if item.audience in AUDIENCE %}{% set _ = meta.append((AUDIENCE[item.audience], "")) %}{% endif %}
+{% if item.kind in KIND %}{% set _ = meta.append((KIND[item.kind], "")) %}{% endif %}
+{% if item.synthetic %}{% set _ = meta.append(("выдуманный номер для примера", "")) %}{% endif %}
+<li class="pd-line{{ ' pd-line--verified' if item.verified }}" data-line="{{ item.id }}" data-number="{{ item.number_display | tel_display }}">
+<p class="pd-line__head">
+{%- if item.synthetic %}<span class="pd-line__num pd-line__num--fake">{{ item.number_display | tel_display }}</span>
+{%- else %}<a class="pd-line__num" href="tel:{{ item.tel }}">{{ i("phone") }}<span>{{ item.number_display | tel_display }}</span></a>{% endif -%}
+</p>
+{% if item.topic_text %}<p class="pd-line__topic" data-verbatim>{{ item.topic_text }}</p>
+{% endif %}
+<ul class="pd-line__meta">
+{%- if item.verified %}<li class="pd-line__ok">{{ i("circle-check") }}<span>Проверено звонком {{ item.verified_at | ru_date }}</span></li>{% else %}<li>{{ unverified() }}</li>{% endif -%}
+{%- if item.is_24x7 %}<li class="pd-line__flag">{{ i("clock") }}<span>Круглосуточно</span></li>{% endif %}
+{%- for label, verbatim in meta %}<li>{{ label }}{% if verbatim %}<span data-verbatim>{{ verbatim }}</span>{% endif %}</li>{% endfor %}
+</ul>
+{% if item.shared_names %}<p class="pd-line__shared">Этот же номер указан у региона: {{ item.shared_names | join(", ") }}</p>
+{% endif %}
+</li>
+{%- endmacro %}
+
+{% macro agency_info(a, with_name=false) -%}
+{% if a %}
+{% if with_name %}<h3 class="pd-agency__title" data-verbatim>{{ a.name }}</h3>{% endif %}
+{% if a.postal_address or a.hours or a.email or a.name_old %}
+<dl class="pd-addr">
+  {% if a.postal_address %}<div><dt>{{ RT.address }}</dt><dd data-verbatim>{{ a.postal_address }}</dd></div>{% endif %}
+  {% if a.hours %}<div><dt>{{ RT.hours }}</dt><dd data-verbatim>{{ a.hours }}</dd></div>{% endif %}
+  {% if a.email %}<div><dt>{{ RT.email }}</dt><dd><span class="pd-url">{{ a.email }}</span></dd></div>{% endif %}
+  {% if a.name_old %}<div><dt>{{ RT.name_old }}</dt><dd data-verbatim>{{ a.name_old }}</dd></div>{% endif %}
+</dl>
+{% endif %}
+{% endif %}
+{%- endmacro %}
+
+{% macro groups(list, addr={}) -%}
+{% for g in list %}
+<div class="pd-agency">
+<h3 class="pd-agency__name" data-verbatim>{{ g.name }}</h3>
+<ul class="pd-lines">
+{% for item in g.lines %}{{ line(item) }}
+{% endfor %}
+</ul>
+{% if g.agency == "rzn" and loop.first %}{{ agency_info(addr.get("rzn")) }}{% endif %}
+</div>
+{% endfor %}
+{%- endmacro %}
+
+{% macro gap(g) -%}
+<div class="pd-agency pd-gap-box">
+{% if g.agency_name %}<h3 class="pd-agency__name" data-verbatim>{{ g.agency_name }}</h3>{% endif %}
+<div class="op-status op-status--info pd-gap">
+  {{ icon("info") }}
+  <p>{% if g.kind == "no_number" %}{{ RT.gap_text_lead }}: {% else %}{{ RT.gap_lead if g.texts | length == 1 else RT.gap_lead_many }}: {% endif %}{% for t in g.texts %}<q data-verbatim{% if t | length <= 24 %} class="pd-nowrap"{% endif %}>{{ t | trim | trim(".") if g.kind == "no_number" else t }}</q>{{ ", " if not loop.last }}{% endfor %}. {{ g.note ~ ". " if g.note }}{{ RT.gap_after if g.texts | length == 1 else RT.gap_after_many }}</p>
+</div>
+</div>
+{%- endmacro %}
+
+{% macro federal_line(item) -%}
+<li class="pd-line{{ ' pd-line--verified' if item.verified }}" data-line="{{ item.id }}">
+<p class="pd-line__head"><a class="pd-line__num" href="tel:{{ item.tel }}">{{ i("phone") }}<span>{{ item.number | tel_display }}</span></a></p>
+<p class="pd-line__topic">{{ item.label }}</p>
+<ul class="pd-line__meta">
+{%- if item.verified %}<li class="pd-line__ok">{{ i("circle-check") }}<span>Сверено {{ item.verified_at | ru_date }}</span></li>{% else %}<li>{{ unverified() }}</li>{% endif -%}
+{%- if item.is_24x7 %}<li class="pd-line__flag">{{ i("clock") }}<span>Круглосуточно</span></li>{% endif %}
+{%- if item.hours_text %}<li>Часы: <span data-verbatim>{{ item.hours_text }}</span></li>{% endif %}
+{%- if item.tel.startswith("+7800") %}<li>бесплатный</li>{% endif %}
+</ul>
+<p class="pd-line__src">Так написано на <a href="{{ item.source_url }}">странице Росздравнадзора</a>{{ i("external-link", "pd-ext") }}, прочитано {{ item.retrieved_at | ru_date }}</p>
+</li>
+{%- endmacro %}
+
+{% macro external(href, text) -%}
+<a class="pd-ext-link" href="{{ href }}">{{ text }}{{ i("external-link", "pd-ext") }}</a>
+{%- endmacro %}
+
+{% macro badges(list) -%}
+<ul class="op-badges">
+  {% for kind in list %}
+  {% set B = {"demo": "info", "draft": "file-warning", "beta": "info", "unverified": "circle-help"} %}
+  {% if kind in B %}<li class="op-badge">{{ icon(B[kind]) }}<span>{{ content.texts.badges[kind] }}</span></li>{% endif %}
+  {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro route_badges(route) -%}
+{% set list = ["draft"] %}
+{% if not route.verified %}{% set _ = list.append("unverified") %}{% endif %}
+{% if route.get("maturity") == "demo" %}{% set _ = list.append("demo") %}{% endif %}
+{{ badges(list) }}
+{%- endmacro %}
+
+{% macro router(item, texts) -%}
+<article class="pd-who">
+  <h3 class="pd-who__title">{{ item.title }}</h3>
+  <p class="pd-who__meta">{{ texts.router_ngo if item.operator == "ngo" else texts.router_gov }}. {{ texts.not_affiliated }}</p>
+  <p class="pd-who__link">{{ external(item.url, "Список на сайте организации") }} <span class="pd-who__domain">откроется сайт {{ item.domain }}</span></p>
+  {% if item.number and not site.pd.links %}
+  <p class="pd-line__head">{% if item.tel %}<a class="pd-line__num" href="tel:{{ item.tel }}">{{ i("phone") }}<span>{{ item.number | tel_display }}</span></a>{% else %}<span class="pd-line__num">{{ item.number | tel_display }}</span>{% endif %}</p>
+  {% if item.number_label %}<p class="pd-line__topic">{{ item.number_label }}</p>{% endif %}
+  <ul class="pd-line__meta"><li>{{ unverified() }}</li></ul>
+  <p class="pd-line__src">Номер из открытого материала: <span data-verbatim>{{ item.source_title }}</span>. Звонком не проверен</p>
+  {% endif %}
+</article>
+{%- endmacro %}
+
+{% macro act_items(list) -%}
+{% set A = RT.acts %}
+<ul class="pd-acts__list">
+  {% for a in list %}
+  <li class="pd-act-item" data-eo="{{ a.eo }}">
+    <p class="pd-act-item__kind">{{ A.kinds.get(a.kind, A.kinds.other) }}</p>
+    <p class="pd-act-item__num">{% if a.get("act_type") %}<span data-verbatim>{{ a.act_type }}{% if a.authority %} {{ a.authority }}{% endif %}</span> {% elif a.authority %}<span data-verbatim>{{ a.authority }}</span>, {% endif %}{% if a.date %}<span class="pd-nowrap">от {{ a.date | ru_date }}</span>{% endif %}{% if a.number %} <span class="pd-nowrap">№ {{ a.number }}</span>{% endif %}</p>
+    <p class="pd-act-item__title" data-verbatim>{{ a.title }}</p>
+    {% if a.kind == "reimbursement" %}<p class="pd-act-item__draft">{{ icon("file-warning") }}<span><strong>Черновик.</strong> {{ A.reimbursement }}</span></p>{% endif %}
+    {% if a.href %}<p class="pd-act-item__link"><a href="{{ a.href }}" title="Номер публикации {{ a.eo }}">{{ A.link }}</a>{{ i("external-link", "pd-ext") }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro acts_lead(list, info) -%}
+{% set A = RT.acts %}
+<p class="pd-section__lead">{{ A.lead }}{% if info.retrieved_at %}. {{ A.checked }} {{ info.retrieved_at | ru_date }}{% endif %}{% if list | rejectattr("kind_checked") | list %}. {{ A.kind_guess }}{% endif %}</p>
+{%- endmacro %}
+
+{% macro acts(region, info) -%}
+{% set A = RT.acts %}
+{% set list = region.acts %}
+<section class="pd-section pd-acts" aria-labelledby="pd-s-acts">
+  <h2 id="pd-s-acts">{{ A.title }}</h2>
+  {{ acts_lead(list, info) }}
+  {% if list %}
+  <details class="pd-acts__box">
+    <summary class="pd-acts__summary">{{ icon("chevron-down", "pd-acts__chev") }}<span>{{ A.summary if not region.acts_more else A.summary_main }}: {{ region.acts_card | length }}</span></summary>
+    {{ act_items(region.acts_card) }}
+    {% if region.acts_more %}<p class="pd-acts__more"><a href="{{ url('regions/' ~ region.slug ~ '/documents/') }}">{{ A.all }}: {{ list | length }}</a></p>{% endif %}
+  </details>
+  {% else %}
+  {{ op.status("info", A.none) }}
+  {% endif %}
+</section>
+{%- endmacro %}

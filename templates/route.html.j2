@@ -1,0 +1,166 @@
+{% extends "op/base.html.j2" %}
+{% import "partials/pd.html.j2" as pd with context %}
+{% set act = route.act %}
+{% set TT = content.texts.route_tables %}
+{% set src = {"title": act.title, "eoNumber": act.eoNumber, "url": act.url, "verified": route.verified, "verified_at": route.verified_at} %}
+{% set route_url = url('routes/' ~ route.id ~ '/') %}
+
+{% macro part_title(p) -%}
+{{ TT.titles.get(p.key, TT.titles.other) if p.kind == "table" else TT[p.key].title }}{% if p.chunks > 1 %}, часть {{ p.chunk }} из {{ p.chunks }}{% endif %}
+{%- endmacro %}
+
+{% macro unit_href(u) -%}
+{% if u.part and (not part or part.slug != u.part) %}{{ url('routes/' ~ route.id ~ '/' ~ u.part ~ '/') }}{% endif %}#pd-u-{{ u.table }}-{{ u.label }}
+{%- endmacro %}
+
+{% macro units_list(key, units) -%}
+<ol class="pd-units">
+{% for u in units %}
+<li class="pd-unit" id="pd-u-{{ key }}-{{ u.label }}"><span class="pd-unit__n">{{ u.label }}</span><div class="pd-unit__body"><p class="pd-unit__org" data-verbatim>{{ u.org }}</p><p class="pd-unit__unit" data-verbatim>{{ u.unit }}</p>{% if u.get('district') %}<p class="pd-unit__meta">{{ TT.district }}: <span data-verbatim>{{ u.district }}</span></p>{% endif %}{% if u.get('population') %}<p class="pd-unit__meta">{{ TT.population }}: <span data-verbatim>{{ u.population }}</span></p>{% endif %}{% if u.get('sic') %}<p class="pd-unit__note">{{ TT.sic }}</p>{% endif %}</div></li>
+{% endfor %}
+</ol>
+{%- endmacro %}
+
+{% macro map_list(key, groups) -%}
+<ul class="pd-units pd-map">
+  {% for g in groups %}
+  <li class="pd-map__row">
+    <p class="pd-map__to">{% for u in g.units %}<a href="{{ unit_href(u) }}" data-verbatim>{{ u.org }}</a>{% if u.unit %} <span class="pd-unit__unit" data-verbatim>{{ u.unit }}</span>{% endif %}{{ "; " if not loop.last }}{% else %}{{ TT.unknown }}{% endfor %}</p>
+    <p class="pd-map__from">{{ TT[key].names }}: <span data-verbatim>{{ g.names | join("; ") }}</span></p>
+  </li>
+  {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% block title %}{% if part %}{{ part_title(part) }}. {% endif %}{{ route.title }}{% endblock %}
+{% block description %}Перечень медицинских организаций, которые оказывают паллиативную помощь{{ " детям" if route.get("audience") == "children" else " взрослым" if route.get("audience") == "adults" }}, по региональному приказу. Дословно, со ссылкой на официальную публикацию{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-pages.css') }}">
+<link rel="stylesheet" href="{{ url('assets/css/pd-print.css') }}" media="print">
+<script type="module" src="{{ url('assets/js/pd.js') }}"></script>
+{% endblock %}
+{% block main %}
+{{ site.pd.sprite }}
+<div class="op-wrap pd-page pd-route">
+  {% set crumbs = [("openpalliative", hub('')), (site.title, url('')), (region.name if region else route.region_id, url('regions/' ~ (route.region_id | lower) ~ '/'))] %}
+  {% if part %}
+  {{ op.crumbs(crumbs + [("Перечень организаций", route_url), (part_title(part), "")]) }}
+  <h1 class="pd-title">{{ part_title(part) }}</h1>
+  <p class="op-lead pd-lead"><a href="{{ route_url }}">{{ route.title }}</a></p>
+  {% else %}
+  {{ op.crumbs(crumbs + [("Перечень организаций", "")]) }}
+  <h1 class="pd-title">{{ route.title }}</h1>
+  {% endif %}
+  {{ pd.route_badges(route) }}
+  {% if not route.verified %}
+  {{ op.status("unverified", "Перечень распознан со скана официальной публикации и ещё не сверен вторым человеком. Перед поездкой или звонком уточните его в министерстве или департаменте здравоохранения региона") }}
+  {% endif %}
+
+  {% if part %}
+  <p class="pd-act">{{ op.cite(src) }}</p>
+  <section class="pd-section" aria-labelledby="pd-r-part">
+    <h2 id="pd-r-part" class="op-visually-hidden">{{ part_title(part) }}</h2>
+    {% if part.kind == "table" %}
+    <p class="pd-section__lead">{{ TT.lead }}</p>
+    {{ units_list(part.key, part.rows) }}
+    {% else %}
+    <p class="pd-section__lead">{{ TT[part.key].lead }}</p>
+    {{ map_list(part.key, part.rows) }}
+    {% endif %}
+  </section>
+  <div class="op-actions pd-pager">
+    {% if prev_part %}<a class="op-btn op-btn--secondary" href="{{ url('routes/' ~ route.id ~ '/' ~ prev_part.slug ~ '/') }}">{{ icon("chevron-left") }}<span>{{ part_title(prev_part) }}</span></a>{% endif %}
+    {% if next_part %}<a class="op-btn op-btn--secondary" href="{{ url('routes/' ~ route.id ~ '/' ~ next_part.slug ~ '/') }}"><span>{{ part_title(next_part) }}</span>{{ icon("chevron-right") }}</a>{% endif %}
+    <a class="op-btn op-btn--secondary" href="{{ route_url }}">{{ icon("list-checks") }}<span>Весь перечень и документ</span></a>
+  </div>
+  {% else %}
+
+  <section class="pd-section" aria-labelledby="pd-r-act">
+    <h2 id="pd-r-act">Документ</h2>
+    <p class="pd-act">{{ op.cite(src) }}</p>
+    {% for a in route.get("amended_by") or [] %}
+    <p class="pd-muted">С изменениями: {% if a is mapping %}{{ a.get("title") or "" }}{% if a.get("note") %} ({{ a.note }}){% endif %}{% if a.get("url") or a.get("eoNumber") %} <a href="{{ a.get('url') or ('http://publication.pravo.gov.ru/document/' ~ a.eoNumber) }}">Официальная публикация</a>{% endif %}{% else %}{{ a }}{% endif %}</p>
+    {% endfor %}
+    {% if route.get("related_acts") %}
+    <p class="pd-muted">Связанные документы региона:
+      {% for a in route.related_acts %}{% set eo = a.eoNumber if a is mapping else a %}<a href="{{ (a.get('url') if a is mapping else '') or ('http://publication.pravo.gov.ru/document/' ~ eo) }}">{{ (a.get('title') if a is mapping else '') or ('публикация ' ~ eo) }}</a>{% if a is mapping and a.get('note') %} ({{ a.note }}){% endif %}{{ "; " if not loop.last }}{% endfor %}
+    </p>
+    {% endif %}
+    <p class="pd-muted">Пункты правил и перечень организаций приведены дословно, в порядке приказа</p>
+  </section>
+
+  <section class="pd-section" aria-labelledby="pd-r-rules">
+    <h2 id="pd-r-rules">Что сказано в правилах</h2>
+    {% for q in route.quotes %}
+    <figure class="op-quote pd-quote">
+      <blockquote data-verbatim>{{ q.text_verbatim }}</blockquote>
+      <figcaption>{{ q.point }}, страница {{ q.page }} скана{% if not q.verified %} {{ pd.unverified() }}{% endif %}</figcaption>
+    </figure>
+    {% endfor %}
+    {% if route.omitted %}<p class="pd-muted">{{ route.omitted }}</p>{% endif %}
+  </section>
+
+  {% if route.parts %}
+  <section class="pd-section" aria-labelledby="pd-r-parts">
+    <h2 id="pd-r-parts">{{ TT.parts_title }}</h2>
+    <p class="pd-section__lead">{{ TT.parts_lead }}</p>
+    <ul class="pd-next pd-parts">
+      {% for p in route.parts %}<li><a href="{{ url('routes/' ~ route.id ~ '/' ~ p.slug ~ '/') }}">{{ icon("list-checks") }}<span>{{ part_title(p) }} ({{ p.rows | length }})</span></a></li>{% endfor %}
+    </ul>
+  </section>
+  {% else %}
+  {% for t in route.tables %}
+  <section class="pd-section" aria-labelledby="pd-r-{{ t.key }}">
+    <h2 id="pd-r-{{ t.key }}">{{ TT.titles.get(t.key, TT.titles.other) }}</h2>
+    {% if loop.first %}<p class="pd-section__lead">{{ TT.lead }}</p>{% endif %}
+    {{ units_list(t.key, t.units) }}
+  </section>
+  {% endfor %}
+
+  {% for key, groups in (("districts", route.district_groups), ("referrals", route.referral_groups)) if groups %}
+  <section class="pd-section" aria-labelledby="pd-r-{{ key }}">
+    <h2 id="pd-r-{{ key }}">{{ TT[key].title }}</h2>
+    <p class="pd-section__lead">{{ TT[key].lead }}</p>
+    {{ map_list(key, groups) }}
+  </section>
+  {% endfor %}
+  {% endif %}
+
+  {% if route.get("superseded_refs") %}
+  <section class="pd-section" aria-labelledby="pd-r-old">
+    <h2 id="pd-r-old">{{ TT.superseded }}</h2>
+    {% for q in route.superseded_refs %}
+    <figure class="op-quote pd-quote">
+      <blockquote data-verbatim>{{ q.text_verbatim }}</blockquote>
+      <figcaption>Страница {{ q.page }} скана. {{ q.note }}</figcaption>
+    </figure>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if route.ocr_rows %}
+  <details class="pd-review">
+    <summary>{{ icon("chevron-down", "pd-review__chev") }}<span>Для проверяющих: где мы исправили распознанный текст</span></summary>
+    <p>В этих строках при распознавании скана были опечатки, мы их исправили. Сверьте строку по скану официальной публикации</p>
+    <ul class="pd-bullets">
+      {% for u in route.ocr_rows %}<li>{{ TT.titles.get(u.table, TT.titles.other) }}, строка {{ u.label }}, страница {{ u.page }} скана</li>{% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+
+  <section class="pd-section" aria-labelledby="pd-r-next">
+    <h2 id="pd-r-next">Что дальше</h2>
+    <ul class="pd-next">
+      {% if region %}<li><a href="{{ url('regions/' ~ region.slug ~ '/') }}">{{ icon("phone") }}<span>Номера региона: {{ region.name }}</span></a></li>{% endif %}
+      <li><a href="{{ xurl('obrashchenie-kit', 'case/', {'new': 1, 'region': route.region_id}) }}">{{ icon("file-text") }}<span>Написать заявление или жалобу</span></a></li>
+      <li><a href="{{ url('routes/') }}">{{ icon("list-checks") }}<span>Перечни других регионов</span></a></li>
+    </ul>
+    <div class="op-actions">{{ op.print_btn() }}</div>
+  </section>
+  {% endif %}
+  <footer class="op-sheet-footer">
+    <p>{{ route.title }}{% if part %}. {{ part_title(part) }}{% endif %}. Распознано со скана официальной публикации, второй сверки не было. Черновик, нужна проверка юристом в РФ</p>
+    <p>Адрес страницы: {{ page_url }}</p>
+  </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+id: ru-kos-children
+region_id: RU-KOS
+title: 'Костромская область: кто оказывает паллиативную помощь детям'
+audience: children
+act:
+  title: Приказ Департамента здравоохранения Костромской области от 16.02.2026 № 245 «Об организации оказания паллиативной медицинской помощи детскому населению Костромской области»
+  number: '245'
+  date: '2026-02-16'
+  eoNumber: '4401202602200003'
+  url: http://publication.pravo.gov.ru/document/4401202602200003
+districts:
+- name: Городской округ город Кострома
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Костромской муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Антроповский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Вохомский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Октябрьский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Павинский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Городской округ город Буй
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Буйский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Городской округ город Волгореченск
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Городской округ город Галич
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Галичский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Кадыйский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Кологривский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Красносельский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Макарьевский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Мантуровский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 22
+- name: Межевской муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Нейский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Нерехтский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Островский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Парфеньевский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Солигаличский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Судиславский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Сусанинский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Чухломской муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Городской округ город Шарья
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Шарьинский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Поназыревский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+- name: Пыщугский муниципальный округ
+  units:
+  - children_inpatient 1
+  page: 23
+amended_by: []
+related_acts:
+- title: Приказ Департамента здравоохранения Костромской области от 27.05.2026 № 688 «Об организации оказания паллиативной медицинской помощи взрослому населению на территории Костромской области»
+  number: '688'
+  date: '2026-05-27'
+  eoNumber: '4401202605290002'
+  url: http://publication.pravo.gov.ru/document/4401202605290002
+  note: для взрослых
+quotes:
+- point: прил. 1, п. 6
+  text_verbatim: Паллиативная специализированная медицинская помощь оказывается врачами-специалистами, занимающими должность врача по паллиативной медицинской помощи, иными врачами-специалистами, медицинскими
+    работниками со средним профессиональным образованием отделения выездной патронажной паллиативной медицинской помощи детям и отделения паллиативной медицинской помощи детям ОГБУЗ «Костромская областная
+    детская больница», дневных стационаров паллиативной медицинской помощи детям
+  page: 6
+  verified: false
+units:
+- n: 1
+  table: children_inpatient
+  org: ОГБУЗ «Костромская областная детская больница»
+  unit: оказывающая паллиативную специализированную медицинскую помощь детскому населению
+  page: 22
+  ocr_fixed: false
+omitted: Формы заключений врачебной комиссии, порядок передачи медицинских изделий, состав комиссии, формы регистра и информационного письма здесь не приводятся
+source_ref: pravo-kos-245
+verified: false
+verified_at: ''

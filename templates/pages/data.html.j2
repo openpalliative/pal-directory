@@ -1,0 +1,120 @@
+{% extends "op/base.html.j2" %}
+{% set T = content.texts.data_page %}
+{% set src = site.pd.source %}
+{% set acts = site.pd.acts %}
+{% block title %}{{ T.title }}{% endblock %}
+{% block description %}Источник номеров раздела «Куда звонить», как мы разбираем таблицу Росздравнадзора и открытые наборы данных{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-pages.css') }}">
+{% endblock %}
+{% block main %}
+<div class="op-wrap pd-page pd-data">
+  {{ op.crumbs([("openpalliative", hub('')), (site.title, url('')), (T.title, "")]) }}
+  <h1 class="pd-title">{{ T.title }}</h1>
+  <p class="op-lead pd-lead">{{ T.lead }}</p>
+  {% if site.pd.demo %}{% include "partials/demo.html.j2" %}{% endif %}
+  {% if site.pd.links %}
+  {{ op.status("info", "В этой сборке номера регионов не публикуются: на карточках только названия и адреса ведомств и ссылка на таблицу Росздравнадзора. Номера появятся после сверки кураторами в регионах") }}
+  {% endif %}
+
+  <section class="pd-section" aria-labelledby="pd-d-src">
+    <h2 id="pd-d-src">Источник</h2>
+    <dl class="op-dl pd-dl">
+      <dt>Что</dt><dd>Таблица «Номера телефонов горячих линий в субъектах Российской Федерации» на сайте Росздравнадзора</dd>
+      <dt>Страница</dt><dd><a class="pd-url" href="{{ src.page_url }}">{{ src.page_url }}</a></dd>
+      {% if src.file_url %}<dt>Файл</dt><dd><span class="pd-url op-code">{{ src.file_url }}</span></dd>{% endif %}
+      {% if src.assured_date %}<dt>Дата таблицы</dt><dd>{{ src.assured_date | ru_date }}</dd>{% endif %}
+      {% if src.checked_at %}<dt>Проверили, что файл не менялся</dt><dd>{{ src.checked_at | ru_date }}</dd>{% endif %}
+      {% if src.sha256 %}<dt>Контрольная сумма</dt><dd><span class="pd-url op-code">sha256 {{ src.sha256 }}</span></dd>{% endif %}
+    </dl>
+    <p>Наблюдатель сверяет файл на сайте Росздравнадзора с нашим снимком. Дата последней сверки указана выше. Если файл изменился, изменения не попадают на сайт сами: их сначала смотрит человек</p>
+  </section>
+
+  <section class="pd-section" aria-labelledby="pd-d-other">
+    <h2 id="pd-d-other">Другие источники</h2>
+    <ul class="pd-bullets">
+      {% if site.pd.rzn_addresses %}
+      <li>Адреса и часы работы территориальных органов Росздравнадзора: открытые данные Росздравнадзора, набор «Территориальные органы». Адрес есть у {{ site.pd.rzn_addresses }} {{ site.pd.rzn_addresses | plural("региона", "регионов", "регионов", false) }}</li>
+      {% endif %}
+      {% for f in site.pd.federal %}
+      <li>{{ f.label }} <span class="pd-nowrap">{{ f.number | tel_display }}</span>: дословно из подвала <a href="{{ f.source_url }}">страницы Росздравнадзора</a>, прочитано {{ f.retrieved_at | ru_date }}</li>
+      {% endfor %}
+      {% for r in site.pd.routes %}
+      <li><a href="{{ url('routes/' ~ r.id ~ '/') }}">{{ r.title }}</a>: {{ r.act.title }}. Распознано со скана, черновик. <a href="{{ r.act.url }}" title="Номер публикации {{ r.act.eoNumber }}">Официальная публикация</a></li>
+      {% endfor %}
+      {% for ro in site.pd.routers %}
+      <li>{{ ro.title }}. Ссылка и номер взяты из открытого материала ({{ ro.source_title }}). Сайт организации мы не открываем, номер звонком не проверен</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  {% if acts %}
+  <section class="pd-section" aria-labelledby="pd-d-acts">
+    <h2 id="pd-d-acts">Официальные документы регионов</h2>
+    <p>Приказы и постановления регионов о паллиативной помощи мы ищем на портале официального опубликования правовых актов (publication.pravo.gov.ru) по словам «паллиативная помощь» и «хоспис». Берём только сведения о документе: название, дату, номер и ссылку на публикацию. Тип документа определён по названию и ещё не сверен человеком</p>
+    <ul class="pd-stats">
+      <li><strong>{{ acts.total }}</strong><span>{{ acts.total | plural("документ", "документа", "документов", false) }}</span></li>
+      <li><strong>{{ acts.regions }}</strong><span>{{ acts.regions | plural("регион", "региона", "регионов", false) }}, где они нашлись</span></li>
+    </ul>
+    {% if acts.retrieved_at %}<p>Снимок портала от {{ acts.retrieved_at | ru_date }}</p>{% endif %}
+  </section>
+  {% endif %}
+
+  <section class="pd-section" aria-labelledby="pd-d-how">
+    <h2 id="pd-d-how">Как мы разбираем таблицу</h2>
+    <ul class="pd-bullets">
+      <li>Каждый номер берём из ячейки вместе с подписью и часами работы, как они написаны в таблице</li>
+      <li>«Круглосуточно» пишем, только если это слово стоит рядом с номером и не ограничено, например «круглосуточно в выходные» мы так не помечаем</li>
+      <li>По подписи определяем, для чего номер: обезболивание, паллиативная помощь, лекарства, жалобы. Подпись из таблицы всегда видна рядом, а человек потом сверяет тему вручную.{% if site.pd.topics.total and site.pd.topics.checked %} Сейчас тема сверена у {{ site.pd.topics.checked }} из {{ site.pd.topics.total }} номеров{% elif site.pd.topics.total %} Пока тема не сверена ни у одного из {{ site.pd.topics.total }} номеров{% endif %}</li>
+      <li>ФИО сотрудников и адреса почты из таблицы не публикуем. Почту территориальных органов Росздравнадзора берём только из открытых данных Росздравнадзора, и только на домене roszdravnadzor.gov.ru</li>
+      <li>Номера о вакцинации, коронавирусе и оплате труда на карточках не показываем, они есть только в наборе данных</li>
+      {% if site.pd.excluded %}<li>Ещё {{ site.pd.excluded }} {{ site.pd.excluded | plural("строка", "строки", "строк", false) }} таблицы с номерами по правилам проекта не публикуются</li>{% endif %}
+    </ul>
+  </section>
+
+  <section class="pd-section" aria-labelledby="pd-d-not">
+    <h2 id="pd-d-not">Чего мы не делаем</h2>
+    <p>Мы никуда не звоним и не проверяем сайты организаций. Номера подтверждают кураторы в регионах, их пока нет. Поэтому у каждого номера стоит «Не проверено»</p>
+  </section>
+
+  <section class="pd-section" aria-labelledby="pd-d-cover">
+    <h2 id="pd-d-cover">Охват</h2>
+    <ul class="pd-stats">
+      <li><strong>{{ site.pd.regions | length }}</strong><span>{{ site.pd.regions | length | plural("регион", "региона", "регионов", false) }} в списке</span></li>
+      <li><strong>{{ site.pd.with_pain }}</strong><span>с отдельной линией по обезболиванию или паллиативной помощи</span></li>
+      {% if not site.pd.links %}<li><strong>{{ site.pd.lines_shown }}</strong><span>{{ site.pd.lines_shown | plural("номер", "номера", "номеров", false) }} на карточках регионов</span></li>{% endif %}
+      <li><strong>{{ site.pd.routes | length }}</strong><span>{{ site.pd.routes | length | plural("перечень", "перечня", "перечней", false) }} организаций по приказам</span></li>
+    </ul>
+  </section>
+
+  <section class="pd-section" aria-labelledby="pd-d-sets">
+    <h2 id="pd-d-sets">Наборы данных</h2>
+    <p>Файлы JSON для разработчиков и НКО. Рядом лежит схема каждого файла. Данные распространяются на условиях источника, Росздравнадзор нужно указывать как источник</p>
+    <div class="op-table-wrap">
+      <table class="op-table">
+        <thead><tr><th scope="col">Файл</th><th scope="col">Что внутри</th><th scope="col">Записей</th><th scope="col">Данные от</th></tr></thead>
+        <tbody>
+          {% set ABOUT = {"regions": "регионы и их коды", "region-lines": "номера по регионам", "addressees": "названия и адреса ведомств региона", "federal-lines": "номера по всей стране", "routers": "ссылки на списки организаций", "routes": "перечни по региональным приказам", "region-acts": "официальные документы регионов", "entrypoints": "страницы для главной"} %}
+          {% for env in site.pd.datasets %}
+          <tr>
+            <td><a href="{{ url('data/v1/' ~ env.dataset ~ '.json') }}">{{ env.dataset }}.json</a><br><a class="pd-small" href="{{ url('data/v1/' ~ env.dataset ~ '.schema.json') }}">схема</a>{% if env.dataset in site.pd.csv %}, <a class="pd-small" href="{{ url('data/v1/' ~ env.dataset ~ '.csv') }}">таблица CSV</a>{% endif %}</td>
+            <td>{{ ABOUT.get(env.dataset, "") }}</td>
+            <td class="op-num">{{ env["items"] | length }}</td>
+            <td>{{ env.data_date | ru_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p>Все файлы перечислены в <a href="{{ url('data/v1/index.json') }}">index.json</a>. Таблицы CSV открываются в Excel и LibreOffice, кодировка UTF-8</p>
+  </section>
+
+  <section class="pd-section" aria-labelledby="pd-d-help">
+    <h2 id="pd-d-help">Как помочь</h2>
+    <ul class="pd-next">
+      <li><a href="{{ site.github }}/issues/new?template=wrong-number.yml">{{ icon("message-square") }}<span>Сообщить об ошибке в номере</span></a></li>
+      <li><a href="{{ site.github }}/blob/main/docs/CURATORS.md">{{ icon("users-round") }}<span>Стать куратором региона</span></a></li>
+    </ul>
+  </section>
+</div>
+{% endblock %}

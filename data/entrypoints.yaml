@@ -1,0 +1,34 @@
+items:
+  - id: regions
+    title: Куда звонить в регионе
+    summary: Номера минздрава, Росздравнадзора и ТФОМС вашего региона с назначением, источником и датой
+    path: ""
+    audience: [family, org]
+    situations: [who-to-call, night-pain, dying]
+    offline: false
+    printable: true
+    maturity: beta
+    verified: false
+    verified_at: ""
+  - id: federal
+    title: Номера по всей стране
+    summary: Куда звонить, если вашего региона нет в списке или в регионе не отвечают
+    path: federal/
+    audience: [family, org]
+    situations: [who-to-call]
+    offline: false
+    printable: true
+    maturity: beta
+    verified: false
+    verified_at: ""
+  - id: routes
+    title: Кто оказывает паллиативную помощь в регионе
+    summary: Перечни медицинских организаций по региональным приказам, дословно. Пока Калининградская, Костромская, Свердловская и Псковская области
+    path: routes/
+    audience: [family, org]
+    situations: [who-to-call]
+    offline: false
+    printable: false
+    maturity: draft
+    verified: false
+    verified_at: ""

@@ -1,0 +1,17 @@
+source: горячая линия-03.03.2026.xlsx
+sha256: 0594711b33cfc449e5842c608a9b056b39f6cbaf9427209271132815cf9e3e90
+regions_total: 89
+regions_published: 83
+regions_excluded: 6
+rows: 258
+rows_by_agency: {rzn: 84, minzdrav: 89, tfoms: 85}
+excluded_rows: 11
+lines: 397
+cells_pall: 4
+cells_round_clock: 11
+cells_122: 26
+malformed: 3
+personal_dropped_min: 1
+email_dropped: 1
+regions_with_pain_pmp: 12
+topics_checked: 73

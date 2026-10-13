@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Регионы: код ISO 3166-2:RU, название, блок портала официальной публикации и пробелы источника",
+  "type": "object",
+  "properties": {
+    "dataset": {
+      "const": "regions"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "name_source",
+          "name_genitive",
+          "aliases",
+          "capital",
+          "oktmo",
+          "route",
+          "router",
+          "has_pain_pmp",
+          "lines",
+          "source_ref",
+          "verified",
+          "verified_at",
+          "name_dative",
+          "pravo_block",
+          "acts",
+          "source_gaps",
+          "rzn_missing",
+          "rzn_missing_reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^RU-[A-Z]{2,3}$",
+            "x-message-ru": "код региона в виде RU-KGD"
+          },
+          "slug": {
+            "type": "string",
+            "pattern": "^ru-[a-z]{2,3}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name_source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name_genitive": {
+            "type": "string"
+          },
+          "name_dative": {
+            "type": "string"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "capital": {
+            "type": "string"
+          },
+          "oktmo": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{8}$"
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "router": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "pravo_block": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^region\\d{2}$"
+          },
+          "acts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "has_pain_pmp": {
+            "type": "boolean"
+          },
+          "lines": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_gaps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "agency",
+                "kind",
+                "text_verbatim",
+                "source_row"
+              ],
+              "properties": {
+                "agency": {
+                  "enum": [
+                    "rzn",
+                    "minzdrav",
+                    "tfoms"
+                  ]
+                },
+                "kind": {
+                  "enum": [
+                    "malformed",
+                    "no_number"
+                  ]
+                },
+                "text_verbatim": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_row": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          },
+          "rzn_missing": {
+            "type": "boolean"
+          },
+          "rzn_missing_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "verified_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        }
+      }
+    }
+  }
+}

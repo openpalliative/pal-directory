@@ -1,0 +1,162 @@
+{% extends "op/base.html.j2" %}
+{% import "partials/pd.html.j2" as pd with context %}
+{% set T = content.texts.region %}
+{% set src = site.pd.source %}
+{% set hotline = opdata.now.lines | rejectattr("verified") | list %}
+{% block title %}{{ region.name }}: куда звонить{% endblock %}
+{% block description %}Номера минздрава, Росздравнадзора и фонда ОМС: {{ region.name }}. С назначением, источником и датой{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url('assets/css/pd-print.css') }}" media="print">
+<script type="module" src="{{ url('assets/js/pd.js') }}"></script>
+{% endblock %}
+{% block main %}
+{{ site.pd.sprite }}
+<div class="op-wrap pd-page pd-card" data-region="{{ region.id }}">
+  {{ op.crumbs([("openpalliative", hub('')), (site.title, url('')), (region.name, "")]) }}
+  <div class="pd-layout">
+    <div class="pd-layout__head">
+      <h1 class="pd-title">{{ region.name | replace(" - ", " - ") }}</h1>
+      <p class="pd-sub">{{ T.subtitle }}</p>
+      {% if region.shown and not site.pd.demo %}<p class="pd-note">{{ pd.i("circle-help") }}<span>Номера из таблицы Росздравнадзора{% if src.assured_date %} от {{ src.assured_date | ru_date }}{% endif %}, {{ T.about_numbers }}</span></p>{% endif %}
+      <pd-remember class="pd-remember" data-region="{{ region.id }}" data-mode="card" hidden>
+        <p class="pd-remember__on">{{ icon("map-pin") }}<span>Запомнили как ваш регион</span> · <button type="button" class="op-btn op-btn--link" data-forget>забыть</button></p>
+        <p class="pd-remember__off" hidden>{{ icon("map-pin") }}<span>Регион забыт на этом устройстве</span> · <button type="button" class="op-btn op-btn--link" data-remember>запомнить снова</button></p>
+      </pd-remember>
+      {% if site.pd.demo %}{% include "partials/demo.html.j2" %}{% endif %}
+    </div>
+    <div class="pd-layout__side">
+      {{ op.now(compact=true) }}
+    </div>
+    <div class="pd-layout__main">
+      <p class="pd-print-now op-print-only">{{ T.print_now }}{% for h in hotline %}. {{ h.short or h.topic }}: {{ h.number }}, {{ T.print_hotline }}{% endfor %}</p>
+      {% if src.stale %}
+      {{ op.status("stale", "Таблице Росздравнадзора больше года. Номера могли смениться, сверьте их на сайте ведомства") }}
+      {% endif %}
+
+      {% if site.pd.links %}
+      {% set L = T.links %}
+      <section class="pd-section" aria-labelledby="pd-s-where">
+        <h2 id="pd-s-where">{{ L.title }}</h2>
+        <p class="pd-section__lead">{{ L.lead }}</p>
+        <div class="op-status op-status--info pd-links-note">
+          {{ icon("info") }}
+          <p>{{ L.numbers }}. {{ pd.external(src.page_url, L.open_table) }}{% if src.assured_date %}, файл от {{ src.assured_date | ru_date }}{% endif %}</p>
+        </div>
+        <p class="pd-links-pain">{{ L.pain_yes if region.has_pain_source else L.pain_no }}</p>
+        {% for a in region.addressees %}
+        <article class="pd-agency pd-agency--card">
+          <p class="pd-agency__role">{{ L.agency[a.agency] }}</p>
+          {{ pd.agency_info(a, with_name=true) }}
+        </article>
+        {% endfor %}
+        {% if region.rzn_missing %}{{ op.status("info", T.no_rzn ~ ". " ~ T.no_rzn_after) }}{% endif %}
+        {% for g in region.gaps %}{{ pd.gap(g) }}{% endfor %}
+      </section>
+      {% if site.pd.federal %}
+      <section class="pd-section" aria-labelledby="pd-s-federal">
+        <h2 id="pd-s-federal">{{ T.sections.complaints.title }}</h2>
+        <ul class="pd-lines">
+          {% for item in site.pd.federal %}{{ pd.federal_line(item) }}{% endfor %}
+        </ul>
+        <ul class="pd-next">
+          <li><a href="{{ xurl('obrashchenie-kit', 'case/', {'new': 1, 'region': region.id}) }}">{{ icon("file-text") }}<span>Написать жалобу или заявление</span></a></li>
+          <li><a href="{{ xurl('pal-norms', 'escalation/') }}">{{ icon("scale") }}<span>Если не ответили: что дальше</span></a></li>
+        </ul>
+      </section>
+      {% endif %}
+      {% else %}
+      {% if not region.shown and not region.gaps %}
+      {{ op.status("info", T.empty_all) }}
+      {% endif %}
+
+      <section class="pd-section" aria-labelledby="pd-s-pain">
+        <h2 id="pd-s-pain">{{ T.sections.pain.title }}</h2>
+        {% if region.counts.pain %}
+        <p class="pd-section__lead">{{ T.sections.pain.lead }}</p>
+        {{ pd.groups(region.sections.pain, region.addr) }}
+        {% else %}
+        {% call op.status("info") %}{{ T.sections.pain.empty }}. <a href="{{ url('federal/') }}">Номера по всей стране</a>{% endcall %}
+        {% endif %}
+      </section>
+
+      {% set med_gaps = region.gaps | selectattr("agency", "in", ["minzdrav", ""]) | list %}
+      {% if region.counts.medical or med_gaps %}
+      <section class="pd-section" aria-labelledby="pd-s-medical">
+        <h2 id="pd-s-medical">{{ T.sections.medical.title }}</h2>
+        <p class="pd-section__lead">{{ T.sections.medical.lead }}</p>
+        {{ pd.groups(region.sections.medical, region.addr) }}
+        {% for g in med_gaps %}{{ pd.gap(g) }}{% endfor %}
+      </section>
+      {% endif %}
+
+      <section class="pd-section" aria-labelledby="pd-s-complaints">
+        <h2 id="pd-s-complaints">{{ T.sections.complaints.title }}</h2>
+        <p class="pd-section__lead">{{ T.sections.complaints.lead }}</p>
+        {% if region.rzn_missing %}{{ op.status("info", T.no_rzn ~ ". " ~ T.no_rzn_after) }}{% endif %}
+        {{ pd.groups(region.sections.complaints, region.addr) }}
+        {% if not region.rzn_missing and not (region.sections.complaints | selectattr("agency", "equalto", "rzn") | list) and region.addr.get("rzn") %}
+        <div class="pd-agency">{{ pd.agency_info(region.addr.rzn, with_name=true) }}</div>
+        {% endif %}
+        {% for g in region.gaps if g.agency in ("rzn", "tfoms") %}{{ pd.gap(g) }}{% endfor %}
+        {% if site.pd.federal %}
+        <div class="pd-agency">
+          <h3 class="pd-agency__name">По всей стране</h3>
+          <ul class="pd-lines">
+            {% for item in site.pd.federal %}{{ pd.federal_line(item) }}{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <ul class="pd-next">
+          <li><a href="{{ xurl('obrashchenie-kit', 'case/', {'new': 1, 'region': region.id}) }}">{{ icon("file-text") }}<span>Написать жалобу или заявление</span></a></li>
+          <li><a href="{{ xurl('pal-norms', 'escalation/') }}">{{ icon("scale") }}<span>Если не ответили: что дальше</span></a></li>
+        </ul>
+      </section>
+      {% endif %}
+
+      <section class="pd-section" aria-labelledby="pd-s-who">
+        <h2 id="pd-s-who">{{ T.who.title }}</h2>
+        {% for route in region.routes %}
+        <article class="pd-who pd-who--route">
+          <h3 class="pd-who__title"><a href="{{ url('routes/' ~ route.id ~ '/') }}">{{ T.who.route_title }}{% if route.get("audience") == "children" %}: {{ T.who.route_children | lower }}{% elif route.get("audience") == "adults" and region.routes | length > 1 %}: {{ T.who.route_adults | lower }}{% endif %}</a></h3>
+          <p class="pd-who__meta">{{ T.who.route_lead }}. Приказ от {{ route.act.date | ru_date }} № {{ route.act.number }}</p>
+          <p class="pd-who__print op-print-only">{{ T.who.print_address }}: https://openpalliative.github.io/pal-directory/routes/{{ route.id }}/</p>
+          {{ pd.route_badges(route) }}
+        </article>
+        {% endfor %}
+        {% for item in region.routers %}{{ pd.router(item, T.who) }}{% endfor %}
+        {% if not region.routes and not region.routers %}
+        {{ op.status("info", T.who.empty) }}
+        {% endif %}
+      </section>
+
+      {% if region.acts is not none %}{{ pd.acts(region, site.pd.acts) }}{% endif %}
+
+      <section class="pd-section pd-night" aria-labelledby="pd-s-night">
+        <h2 id="pd-s-night">{{ T.night.title }}</h2>
+        <p>{{ T.night.text_links if site.pd.links else T.night.text }}</p>
+        <div class="op-actions"><a class="op-btn op-btn--secondary" href="{{ xurl('home-care-kit', 'night/', {'region': region.id}) }}">{{ icon("pencil") }}<span>{{ T.night.link }}</span></a></div>
+      </section>
+
+      <section class="pd-section pd-source" aria-labelledby="pd-s-source">
+        <h2 id="pd-s-source">{{ "Откуда сведения" if site.pd.links else "Откуда номера" }}</h2>
+        <p>
+          {% if src.assured_date %}Таблица Росздравнадзора от {{ src.assured_date | ru_date }}.{% endif %}
+          {% if src.checked_at %} На сайте Росздравнадзора без изменений на {{ src.checked_at | ru_date }}.{% endif %}
+          {{ pd.external(src.page_url, "Страница таблицы на сайте Росздравнадзора") }}
+        </p>
+        <p><a href="{{ url('data/') }}">Как мы разбираем таблицу</a></p>
+        {{ op.data_date(data["regions"].data_date if data.get("regions") else "", stale_after=90, label="Данные от") }}
+        <div class="op-actions">{{ op.print_btn() }}</div>
+      </section>
+
+      {% include "partials/report.html.j2" %}
+
+      <pd-back class="pd-back" data-situations="{{ site.pd.situations_json }}" data-hub="{{ hub('s/') }}" hidden><a href="{{ hub('') }}">{{ icon("arrow-left") }}<span data-back-label>Вернуться</span></a></pd-back>
+    </div>
+  </div>
+  <footer class="op-sheet-footer pd-sheet-footer">
+    <p>{{ region.name }}. Таблица Росздравнадзора{% if src.assured_date %} от {{ src.assured_date | ru_date }}{% endif %}, звонком не проверено. Сверьте до <span data-print-until>{{ site.pd.print_until | ru_date }}</span></p>
+    <p>Адрес страницы: {{ region.page_url }}</p>
+  </footer>
+</div>
+{% endblock %}

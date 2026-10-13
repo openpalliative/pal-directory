@@ -1,0 +1,17 @@
+repo: pal-directory
+title: Куда звонить
+tagline: Номера вашего региона с назначением, источником и датой
+prefix: pd
+port: 8705
+base: /pal-directory/
+pwa: false
+stale_after_days: 90
+draft_default: none
+github: https://github.com/openpalliative/pal-directory
+site_url: https://openpalliative.github.io
+lang: ru
+nav:
+  - title: Регионы
+    path: ""
+  - title: По всей стране
+    path: federal/
